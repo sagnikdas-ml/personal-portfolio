@@ -10,7 +10,6 @@ package.json
 vercel.json
 wrangler.toml
 _worker.js
-IMAGEKIT_UPLOAD_SETUP.md
 mkdocs.yml
 requirements-blog.txt
 .agents
