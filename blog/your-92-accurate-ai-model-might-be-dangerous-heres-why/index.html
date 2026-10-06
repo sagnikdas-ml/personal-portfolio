@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+  <meta name="description"
+    content="High accuracy is not enough in medical AI. Trust, interpretability, and epistemic transparency have to be part of the system design.">
+  <meta name="author" content="Sagnik Das">
+
+  <link rel="canonical" href="https://sagnikdas.com/blog/your-92-accurate-ai-model-might-be-dangerous-heres-why/">
+
+  <link rel="icon" href="/public/favicon.png" type="image/png">
+
+  <title>Your 92% Accurate AI Model Might Be Dangerous (Here's Why) | Simply ML</title>
+
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/fontawesome.min.css" rel="stylesheet">
+  <link href="../css/brands.min.css" rel="stylesheet">
+  <link href="../css/solid.min.css" rel="stylesheet">
+  <link href="../css/v4-font-face.min.css" rel="stylesheet">
+  <link href="../css/base.css" rel="stylesheet">
+  <link id="hljs-light" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="hljs-dark" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+  <link href="../stylesheets/blog.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+
+
+
+
+  <meta name="robots" content="index, follow">
+
+  <meta name="keywords" content="explainable AI, medical AI, interpretability, AI ethics, healthcare">
+
+
+  <meta property="og:url" content="https://sagnikdas.com/blog/your-92-accurate-ai-model-might-be-dangerous-heres-why/">
+
+  <meta property="og:site_name" content="Simply ML">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Your 92% Accurate AI Model Might Be Dangerous (Here&#39;s Why) | Simply ML">
+  <meta property="og:description"
+    content="High accuracy is not enough in medical AI. Trust, interpretability, and epistemic transparency have to be part of the system design.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+
+  <meta property="article:published_time" content="2025-07-17">
+  <meta property="article:modified_time" content="2025-07-17">
+
+
+
+  <meta property="article:tag" content="explainable AI">
+
+  <meta property="article:tag" content="medical AI">
+
+  <meta property="article:tag" content="interpretability">
+
+  <meta property="article:tag" content="AI ethics">
+
+  <meta property="article:tag" content="healthcare">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your 92% Accurate AI Model Might Be Dangerous (Here&#39;s Why) | Simply ML">
+  <meta name="twitter:description"
+    content="High accuracy is not enough in medical AI. Trust, interpretability, and epistemic transparency have to be part of the system design.">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+  <script type="application/ld+json">
+
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": "https://sagnikdas.com/blog/your-92-accurate-ai-model-might-be-dangerous-heres-why/#post",
+      "mainEntityOfPage": "https://sagnikdas.com/blog/your-92-accurate-ai-model-might-be-dangerous-heres-why/",
+      "headline": "Your 92% Accurate AI Model Might Be Dangerous (Here&#39;s Why)",
+      "description": "High accuracy is not enough in medical AI. Trust, interpretability, and epistemic transparency have to be part of the system design.",
+      "url": "https://sagnikdas.com/blog/your-92-accurate-ai-model-might-be-dangerous-heres-why/",
+      
+      "datePublished": "2025-07-17",
+      "dateModified": "2025-07-17",
+      
+      
+      "articleSection": "AI &amp; Society",
+      
+      
+      "keywords": "explainable AI, medical AI, interpretability, AI ethics, healthcare",
+      
+      "author": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/",
+        "image": "https://avatars.githubusercontent.com/u/73765575?v=4"
+      },
+      "image": "https://avatars.githubusercontent.com/u/73765575?v=4",
+      "inLanguage": "en"
+    }
+    
+  </script>
+
+</head>
+
+<body>
+  <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="..">Simply ML</a>
+
+      <!-- Expanded navigation -->
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav blog-nav-list">
+          <li class="nav-item">
+            <a href=".." class="nav-link ">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/personal" class="nav-link">Personal</a>
+          </li>
+          <li class="nav-item">
+            <a href="/meet" class="nav-link">Meet</a>
+          </li>
+        </ul>
+
+
+        <ul class="nav navbar-nav ms-md-auto">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse"
+              data-bs-target="#toc-collapse" title="Table of Contents">
+              <span class="fa fa-angle-down"></span>
+            </button>
+          </div>
+
+
+          <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+            <ul class="nav flex-column">
+
+              <li class="nav-item" data-bs-level="1"><a href="#your-92-accurate-ai-model-might-be-dangerous-heres-why"
+                  class="nav-link">Your 92% Accurate AI Model Might Be Dangerous (Here's Why)</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item" data-bs-level="2"><a href="#the-problem-were-not-talking-about"
+                      class="nav-link">The Problem We're Not Talking About</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#the-black-box-dilemma" class="nav-link">The Black Box
+                      Dilemma</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#why-trust-me-it-works-isnt-enough"
+                      class="nav-link">Why "Trust Me, It Works" Isn't Enough</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#what-this-means-for-ai-engineers"
+                      class="nav-link">What This Means for AI Engineers</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#the-bigger-picture" class="nav-link">The Bigger
+                      Picture</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#practical-takeaways" class="nav-link">Practical
+                      Takeaways</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#final-thoughts" class="nav-link">Final Thoughts</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <p><a class="blog-back-link" href="../">← Back to blog</a></p>
+        <div class="blog-post-meta">
+          <span class="blog-post-category">AI &amp; Society</span>
+          <span>Jul 17, 2025</span>
+          <span>4 min read</span>
+        </div>
+
+        <h1 id="your-92-accurate-ai-model-might-be-dangerous-heres-why">Your 92% Accurate AI Model Might Be Dangerous
+          (Here's Why)<a class="headerlink" href="#your-92-accurate-ai-model-might-be-dangerous-heres-why"
+            title="Permanent link">&para;</a></h1>
+        <div class="blog-tag-row"><span class="blog-tag">explainable AI</span><span class="blog-tag">medical
+            AI</span><span class="blog-tag">interpretability</span><span class="blog-tag">AI ethics</span><span
+            class="blog-tag">healthcare</span></div>
+
+        <h2 id="the-problem-were-not-talking-about">The Problem We're Not Talking About<a class="headerlink"
+            href="#the-problem-were-not-talking-about" title="Permanent link">&para;</a></h2>
+        <p>Your deep learning model can detect cancer from MRI scans with 92% accuracy. Impressive, right? But here's
+          the uncomfortable question: <strong>Should doctors actually trust it?</strong></p>
+        <p>As AI engineers, we often celebrate high accuracy scores as the ultimate win. But when I dug deeper into the
+          epistemology of AI in medicine, I realized we might be solving the wrong problem entirely.</p>
+        <h2 id="the-black-box-dilemma">The Black Box Dilemma<a class="headerlink" href="#the-black-box-dilemma"
+            title="Permanent link">&para;</a></h2>
+        <p>Let's be honest about what we've built. Modern neural networks are essentially:</p>
+        <pre><code class="language-python"># Oversimplified, but you get the idea
+def diagnose_cancer(mri_scan):
+    # 50+ layers of transformations
+    # Billions of parameters
+    # Gradient descent magic
+    return &quot;cancer_probability: 0.92&quot;
+</code></pre>
+        <p>The problem is that even we do not really understand how this function works internally. We can trace the
+          math, but can we explain to a doctor <em>why</em> the model flagged this specific scan?</p>
+        <p>This is not just a UX problem. It is an <strong>epistemic crisis</strong>. In medicine, being right is not
+          enough. You need to be right <em>for the right reasons</em>.</p>
+        <h2 id="why-trust-me-it-works-isnt-enough">Why "Trust Me, It Works" Isn't Enough<a class="headerlink"
+            href="#why-trust-me-it-works-isnt-enough" title="Permanent link">&para;</a></h2>
+        <p>Imagine you are a doctor. An AI system tells you a patient has cancer, but you cannot explain why. The
+          patient asks: "How do you know?"</p>
+        <p>Your options:</p>
+        <ol>
+          <li>"The computer said so, and it's usually right"</li>
+          <li>"I can see suspicious tissue patterns in regions X and Y that typically indicate..."</li>
+        </ol>
+        <p>Option 1 might work for recommending movies, but it is ethically and epistemologically bankrupt in medicine.
+        </p>
+        <h3 id="the-reliability-trap">The Reliability Trap<a class="headerlink" href="#the-reliability-trap"
+            title="Permanent link">&para;</a></h3>
+        <p>Some argue for <strong>computational reliabilism</strong>: if the system works consistently, we should trust
+          it. That sounds reasonable until you consider:</p>
+        <ul>
+          <li><strong>Edge cases:</strong> What happens when the model encounters something outside its training
+            distribution?</li>
+          <li><strong>Bias amplification:</strong> High accuracy on your test set might hide systematic bias</li>
+          <li><strong>Accountability:</strong> When the model fails, who is responsible?</li>
+        </ul>
+        <pre><code class="language-python"># This is what we often do
+if model_accuracy &gt; 0.9:
+    deploy_to_production()
+
+# This is what we should consider
+if model_accuracy &gt; 0.9 and model_is_interpretable() and bias_tested():
+    deploy_to_production()
+</code></pre>
+        <h2 id="what-this-means-for-ai-engineers">What This Means for AI Engineers<a class="headerlink"
+            href="#what-this-means-for-ai-engineers" title="Permanent link">&para;</a></h2>
+        <p>If you are building AI systems for healthcare, or any high-stakes domain, here are a few things worth
+          treating as core requirements rather than afterthoughts.</p>
+        <h3 id="1-build-in-explainability-from-day-one">1. Build in explainability from day one<a class="headerlink"
+            href="#1-build-in-explainability-from-day-one" title="Permanent link">&para;</a></h3>
+        <p>Do not treat interpretability as something you add later.</p>
+        <pre><code class="language-python"># Example with SHAP
+import shap
+
+explainer = shap.Explainer(model)
+shap_values = explainer(X_test)
+
+# Now you can show which features drove the decision
+shap.plots.waterfall(shap_values[0])
+</code></pre>
+        <h3 id="2-design-for-epistemic-transparency">2. Design for epistemic transparency<a class="headerlink"
+            href="#2-design-for-epistemic-transparency" title="Permanent link">&para;</a></h3>
+        <p>Create systems where:</p>
+        <ul>
+          <li><strong>Confidence intervals</strong> are meaningful and well calibrated</li>
+          <li><strong>Feature importance</strong> is interpretable to domain experts</li>
+          <li><strong>Decision boundaries</strong> can be explained in domain terms</li>
+          <li><strong>Uncertainty quantification</strong> is built in, not bolted on</li>
+        </ul>
+        <h3 id="3-collaborate-with-domain-experts">3. Collaborate with domain experts<a class="headerlink"
+            href="#3-collaborate-with-domain-experts" title="Permanent link">&para;</a></h3>
+        <p>Your model might be mathematically sound, but does it make medical sense?</p>
+        <p>Partner with doctors to:</p>
+        <ul>
+          <li>Validate that important features align with medical knowledge</li>
+          <li>Identify potential failure modes</li>
+          <li>Ensure explanations are clinically meaningful</li>
+        </ul>
+        <h2 id="the-bigger-picture">The Bigger Picture<a class="headerlink" href="#the-bigger-picture"
+            title="Permanent link">&para;</a></h2>
+        <p>This is not just about medical AI. It is about <strong>responsible AI development</strong> more broadly. As
+          we build more powerful systems, we need to keep asking:</p>
+        <ul>
+          <li>Are we optimizing for the right metrics?</li>
+          <li>Can we explain our models' decisions to stakeholders?</li>
+          <li>Are we building trust or simply demanding it?</li>
+        </ul>
+        <h2 id="practical-takeaways">Practical Takeaways<a class="headerlink" href="#practical-takeaways"
+            title="Permanent link">&para;</a></h2>
+        <ol>
+          <li><strong>Accuracy is necessary but not sufficient</strong> for high-stakes AI</li>
+          <li><strong>Interpretability should be a first-class requirement</strong>, not a nice-to-have</li>
+          <li><strong>Domain expertise is irreplaceable</strong>: collaborate, do not replace</li>
+          <li><strong>Epistemic humility</strong> matters: know what your model does not know</li>
+        </ol>
+        <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts"
+            title="Permanent link">&para;</a></h2>
+        <p>The next time you see a 92% accuracy score, ask yourself: <em>Would I trust this system to make decisions
+            about my health?</em> If the answer is no, there is more work to do.</p>
+        <p>Building AI that is not just accurate but genuinely trustworthy is one of the most important challenges in
+          technology today. It is not only about better algorithms. It is about building systems that actually deserve
+          the trust they ask for.</p>
+        <hr />
+        <p><em>What are your thoughts on explainable AI? Have you worked on interpretability in high-stakes
+            domains?</em></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="col-md-12">
+    <footer class="blog-footer-shell">
+      <div class="blog-footer-inner">
+        <span>© 2025 – 2026 Sagnik Das</span>
+        <span>
+          <a href="/">Home</a> ·
+          <a href="/blog/">Blog</a> ·
+          <a href="/personal">Personal Corner</a> ·
+          <a href="/meet">Book a Meeting</a>
+        </span>
+      </div>
+    </footer>
+
+  </footer>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+    var base_url = "..",
+      shortcuts = { "help": 191, "next": 78, "previous": 80, "search": 83 };
+  </script>
+  <script src="../js/base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="../search/main.js"></script>
+
+  <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="searchModalLabel">Search</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>From here you can search these documents. Enter your search terms below.</p>
+          <form>
+            <div class="form-group">
+              <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query"
+                title="Type search term here">
+            </div>
+          </form>
+          <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Keys</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="help shortcut"><kbd>?</kbd></td>
+                <td>Open this help</td>
+              </tr>
+              <tr>
+                <td class="next shortcut"><kbd>n</kbd></td>
+                <td>Next page</td>
+              </tr>
+              <tr>
+                <td class="prev shortcut"><kbd>p</kbd></td>
+                <td>Previous page</td>
+              </tr>
+              <tr>
+                <td class="search shortcut"><kbd>s</kbd></td>
+                <td>Search</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

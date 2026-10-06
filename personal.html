@@ -1,0 +1,1915 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/public/favicon.png" type="image/png" />
+    <title>Personal Corner | Sagnik Das — Photos & Life Moments</title>
+    <meta name="description" content="A photo timeline of places, hobbies, routes, and small observations from Sagnik Das's life outside work." />
+    <meta name="keywords" content="Sagnik Das, personal timeline, Nürnberg slowly, keyboard learning, life notes, city cycling, India" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sagnikdas.com/personal" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Personal Corner | Sagnik Das" />
+    <meta property="og:description" content="Photos, routes, music learning, and small moments from life outside work." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sagnikdas.com/personal" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1541614101331-1a5a3a194e92?q=80&w=1200&auto=format&fit=crop" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Personal Corner | Sagnik Das" />
+    <meta name="twitter:description" content="Photos, routes, music learning, and small moments from life outside work." />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "@id": "https://sagnikdas.com/personal#page",
+          "url": "https://sagnikdas.com/personal",
+          "name": "Personal Corner | Sagnik Das",
+          "description": "A personal archive of photos, routes, hobbies, and life moments from Sagnik Das outside work.",
+          "isPartOf": {
+            "@id": "https://sagnikdas.com/#website"
+          },
+          "about": {
+            "@id": "https://sagnikdas.com/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://sagnikdas.com/#person",
+          "name": "Sagnik Das",
+          "url": "https://sagnikdas.com/",
+          "jobTitle": "NLP & AI Systems Engineer",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nürnberg",
+            "addressRegion": "Bavaria",
+            "addressCountry": "Germany"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Same fonts as main site -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+    <!-- Same CSS bundle as main site -->
+    <link rel="stylesheet" crossorigin href="./assets/index-BkqNw_3W.css?v=10">
+    <link rel="stylesheet" href="./assets/personal-admin.css?v=3">
+
+    <style>
+      :root {
+        --font-body: 'Inter', sans-serif;
+        --font-display: 'Playfair Display', serif;
+        --font-mono: 'JetBrains Mono', monospace;
+        --page-padding: 24px;
+        --container: 1100px;
+        --space-section: 60px;
+      }
+      @media (min-width: 768px) {
+        :root {
+          --page-padding: 40px;
+          --space-section: 80px;
+        }
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+
+      .personal-hero {
+        padding-top: calc(64px + 60px);
+        padding-bottom: 40px;
+        padding-left: var(--page-padding);
+        padding-right: var(--page-padding);
+        max-width: var(--container);
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .personal-content {
+        padding-left: var(--page-padding);
+        padding-right: var(--page-padding);
+        padding-bottom: 100px;
+        max-width: var(--container);
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      /* Subsection Dashboard */
+      .subsection-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+
+      .subsection-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 150px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      }
+
+      .subsection-card:hover {
+        border-color: #38bdf8;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(56, 189, 248, 0.08);
+      }
+
+      .subsection-card.active {
+        border-color: #38bdf8;
+        background: #f0f9ff;
+        box-shadow: 0 4px 12px rgba(56, 189, 248, 0.06);
+      }
+
+      .sub-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+
+      .sub-title {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 15px;
+        color: #0f172a;
+        margin-bottom: 4px;
+      }
+
+      .sub-desc {
+        font-size: 12px;
+        color: #64748b;
+        line-height: 1.4;
+      }
+
+      .sub-count {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: #94a3b8;
+        margin-top: 12px;
+        align-self: flex-start;
+        background: #f1f5f9;
+        padding: 2px 8px;
+        border-radius: 999px;
+      }
+      .subsection-card.active .sub-count {
+        background: #bae6fd;
+        color: #0369a1;
+      }
+
+      /* Filters & Toolbar */
+      .toolbar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 24px;
+        margin-bottom: 40px;
+      }
+
+      @media (min-width: 768px) {
+        .toolbar {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .filter-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .filter-btn {
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        color: #475569;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .filter-btn:hover {
+        border-color: #94a3b8;
+        color: #0f172a;
+      }
+
+      .filter-btn.active {
+        background: #0f172a;
+        border-color: #0f172a;
+        color: #ffffff;
+      }
+
+      .view-toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 7px 14px;
+        border-radius: 8px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        color: #475569;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        align-self: flex-start;
+      }
+
+      .view-toggle-btn:hover {
+        border-color: #94a3b8;
+        color: #0f172a;
+      }
+
+      .notes-section {
+        margin-top: 56px;
+      }
+
+      .notes-section-head {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 22px;
+      }
+
+      .notes-kicker {
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #4f46e5;
+      }
+
+      .notes-heading {
+        font-family: var(--font-display);
+        font-size: clamp(28px, 4vw, 38px);
+        line-height: 1.15;
+        color: #0f172a;
+      }
+
+      .notes-subtext {
+        max-width: 680px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: #475569;
+      }
+
+      .notes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+      }
+
+      .note-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      }
+
+      .note-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        font-size: 12px;
+        color: #64748b;
+        margin-bottom: 14px;
+      }
+
+      .note-category {
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #d97706;
+      }
+
+      .note-title {
+        font-family: var(--font-display);
+        font-size: 24px;
+        line-height: 1.18;
+        color: #0f172a;
+        margin-bottom: 12px;
+      }
+
+      .note-summary {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #475569;
+        margin-bottom: 14px;
+      }
+
+      .note-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .note-tag {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+        border-radius: 999px;
+        padding: 4px 8px;
+        background: #f8fafc;
+      }
+
+      .note-details {
+        border-top: 1px solid #f1f5f9;
+        padding-top: 14px;
+      }
+
+      .note-details summary {
+        list-style: none;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        color: #4f46e5;
+      }
+
+      .note-details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .note-body {
+        margin-top: 14px;
+        font-size: 14px;
+        line-height: 1.8;
+        color: #334155;
+      }
+
+      .note-body h2,
+      .note-body h3,
+      .note-body h4 {
+        font-family: var(--font-display);
+        color: #0f172a;
+        line-height: 1.2;
+        margin: 24px 0 10px;
+      }
+
+      .note-body p,
+      .note-body ul,
+      .note-body ol,
+      .note-body blockquote,
+      .note-body pre {
+        margin-bottom: 14px;
+      }
+
+      .note-body ul,
+      .note-body ol {
+        padding-left: 20px;
+      }
+
+      .note-body code {
+        font-family: var(--font-mono);
+        font-size: 0.92em;
+        background: #fef3c7;
+        color: #92400e;
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+
+      .note-body blockquote {
+        border-left: 3px solid #f59e0b;
+        padding-left: 14px;
+        color: #475569;
+      }
+
+      /* Timeline Layout */
+      .timeline-group {
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      .timeline-month-title {
+        font-family: var(--font-display);
+        font-size: 24px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .timeline-month-title::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e2e8f0;
+      }
+
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 28px;
+      }
+
+      @media (min-width: 640px) {
+        .photo-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .photo-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Photo Card */
+      .photo-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+      }
+
+      .photo-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+        border-color: #cbd5e1;
+      }
+
+      .photo-image-wrap {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        overflow: hidden;
+        background-color: #f1f5f9;
+        position: relative;
+      }
+
+      .photo-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .photo-card:hover .photo-image {
+        transform: scale(1.03);
+      }
+
+      .photo-category-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: #0f172a;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        z-index: 2;
+      }
+
+      .photo-details {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .photo-title {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.35;
+        color: #0f172a;
+        margin-bottom: 6px;
+      }
+
+      .photo-caption {
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: #475569;
+        margin-bottom: 16px;
+        flex-grow: 1;
+      }
+
+      .photo-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11.5px;
+        color: #64748b;
+        border-t: 1px solid #f1f5f9;
+        padding-top: 12px;
+      }
+
+      .photo-location {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* Compact Archive View */
+      .archive-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 24px;
+      }
+
+      .archive-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f5f9;
+        cursor: pointer;
+        transition: color 0.15s ease;
+      }
+
+      .archive-item:last-child {
+        border-bottom: none;
+      }
+
+      .archive-item:hover {
+        color: #4f46e5;
+      }
+
+      .archive-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .archive-date {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: #64748b;
+        width: 80px;
+        flex-shrink: 0;
+      }
+
+      .archive-title {
+        font-weight: 600;
+        font-size: 14.5px;
+      }
+
+      .archive-category {
+        font-size: 11px;
+        background: #f1f5f9;
+        color: #475569;
+        padding: 2px 8px;
+        border-radius: 999px;
+      }
+
+      /* Lightbox Modal */
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.96);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 20px;
+      }
+
+      .lightbox.open {
+        display: flex;
+        opacity: 1;
+      }
+
+      .lightbox-container {
+        width: 100%;
+        max-width: 960px;
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 40px);
+        animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes scaleUp {
+        from { transform: scale(0.95); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+
+      @media (min-width: 768px) {
+        .lightbox-container {
+          flex-direction: row;
+          height: auto;
+          aspect-ratio: 16 / 10;
+        }
+      }
+
+      .lightbox-image-wrap {
+        background-color: #000;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 250px;
+      }
+
+      @media (min-width: 768px) {
+        .lightbox-image-wrap {
+          min-height: unset;
+        }
+      }
+
+      .lightbox-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+
+      .lightbox-details {
+        width: 100%;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        justify-content: space-between;
+      }
+
+      @media (min-width: 768px) {
+        .lightbox-details {
+          width: 340px;
+          flex-shrink: 0;
+          border-left: 1px solid #e2e8f0;
+        }
+      }
+
+      .lightbox-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .lightbox-close-btn {
+        background: #f1f5f9;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #475569;
+        transition: background 0.15s ease, color 0.15s ease;
+      }
+
+      .lightbox-close-btn:hover {
+        background: #e2e8f0;
+        color: #0f172a;
+      }
+
+      .lightbox-body {
+        flex-grow: 1;
+      }
+
+      .lightbox-title {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 18px;
+        color: #0f172a;
+        margin-bottom: 12px;
+      }
+
+      .lightbox-caption {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #475569;
+        margin-bottom: 24px;
+      }
+
+      .lightbox-meta-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-size: 12.5px;
+        color: #64748b;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 16px;
+      }
+
+      .lightbox-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Loader Spinner */
+      .loader-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 0;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e2e8f0;
+        border-top-color: #38bdf8;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 16px;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Fallback/Empty State Card */
+      .fallback-card {
+        background: #ffffff;
+        border: 1px dashed #cbd5e1;
+        border-radius: 16px;
+        padding: 40px;
+        text-align: center;
+        max-width: 480px;
+        margin: 40px auto;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+
+    <!-- ── NAV (exact replica of main site Navbar) ── -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-300 bg-transparent">
+      <div class="w-full max-w-[var(--container)] mx-auto px-[var(--page-padding)] flex items-center justify-between">
+        <a href="/" class="logo-name text-[#0f172a] hover:text-[#4f46e5] transition-colors duration-200" style="text-decoration:none; font-size: 24px; font-weight: 600;">
+          Sagnik Das
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/#about"      class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200" style="text-decoration:none">About</a>
+          <a href="/#projects"   class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200" style="text-decoration:none">Projects</a>
+          <a href="/#experience" class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200" style="text-decoration:none">Experience</a>
+          <a href="/#research"   class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200" style="text-decoration:none">Research</a>
+          <a href="/#contact"    class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200" style="text-decoration:none">Contact</a>
+        </div>
+
+        <!-- Right: Resume button + mobile toggle -->
+        <div class="flex items-center gap-3">
+          <a href="https://cv.sagnikdas.com" target="_blank" rel="noopener noreferrer"
+            class="hidden sm:flex items-center gap-2 px-[18px] py-[8px] bg-[#38bdf8] text-[#0a0a0a] text-[13px] font-medium uppercase tracking-[0.08em] rounded-[10px] hover:bg-[#7dd3fc] hover:-translate-y-[1px] transition-all duration-200"
+            style="text-decoration:none">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Resume
+          </a>
+
+          <!-- Mobile hamburger -->
+          <button id="mobile-toggle" class="md:hidden w-8 h-8 flex items-center justify-center text-[#475569] hover:text-[#4f46e5] transition-colors duration-200" aria-label="Toggle menu">
+            <svg id="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6"  x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+            <svg id="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6"  y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile drawer -->
+      <div id="mobile-menu" class="md:hidden absolute top-16 left-0 right-0 bg-[rgba(248,250,252,0.95)] backdrop-blur-xl border-b border-[#bae6fd] px-[var(--page-padding)] py-6 space-y-12" style="display:none">
+        <div class="flex flex-col gap-4">
+          <a href="/#about"      style="text-decoration:none" class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200">About</a>
+          <a href="/#projects"   style="text-decoration:none" class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200">Projects</a>
+          <a href="/#experience" style="text-decoration:none" class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200">Experience</a>
+          <a href="/#research"   style="text-decoration:none" class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200">Research</a>
+          <a href="/#contact"    style="text-decoration:none" class="text-[13px] font-medium uppercase tracking-[0.08em] text-[#475569] hover:text-[#4f46e5] transition-colors duration-200">Contact</a>
+        </div>
+        <a href="https://cv.sagnikdas.com" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-[18px] py-[8px] bg-[#38bdf8] text-[#0a0a0a] text-[13px] font-medium uppercase tracking-[0.08em] rounded-[10px]">
+          Resume
+        </a>
+      </div>
+    </nav>
+
+    <!-- ── PAGE CONTENT ── -->
+    <main class="min-h-screen">
+
+      <!-- Header Section -->
+      <div class="personal-hero">
+        <!-- Back link -->
+        <a href="/" class="inline-flex items-center gap-2 text-[13px] font-medium text-[#475569] hover:text-[#4f46e5] transition-colors duration-200 mb-10" style="text-decoration:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Back to Portfolio
+        </a>
+
+        <!-- Eyebrow -->
+        <p class="text-[12px] font-body uppercase tracking-[0.15em] text-[#38bdf8] font-semibold mb-4">
+          Outside Work
+        </p>
+
+        <!-- Title -->
+        <h1 class="font-display font-bold text-[clamp(36px,5vw,56px)] leading-[1.1] text-[#0f172a] mb-6">
+          The Softer Corner 🌿
+        </h1>
+
+        <!-- Description -->
+        <p class="font-body text-[16px] leading-[1.75] text-[#475569] max-w-[680px]">
+          sagnikdas.com is mostly about my professional work. This page is a softer corner of the site — 
+          a photo timeline of places, hobbies, routes, and small observations from life outside work.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 mt-8">
+          <a href="https://indie.sagnikdas.com" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-[18px] py-[10px] bg-[#0f172a] text-[#f8fafc] text-[13px] font-medium rounded-[10px] hover:bg-[#1e293b] hover:-translate-y-[1px] transition-all duration-200"
+            style="text-decoration:none">
+            Explore my quirky indie side
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </a>
+          <button type="button" class="personal-admin-trigger" onclick="openAdminUpload()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            Add photos
+          </button>
+        </div>
+      </div>
+
+      <div class="personal-content">
+        <!-- Subsection Themes Cards -->
+        <div class="subsection-grid" id="subsection-grid"></div>
+
+        <!-- Filter & View Controls Toolbar -->
+        <div class="toolbar">
+          <div class="filter-tabs" id="filter-tabs">
+            <button class="filter-btn active" onclick="setFilter('All')">All</button>
+            <button class="filter-btn" onclick="setFilter('City')">City</button>
+            <button class="filter-btn" onclick="setFilter('Travel')">Travel</button>
+            <button class="filter-btn" onclick="setFilter('Music')">Music</button>
+            <button class="filter-btn" onclick="setFilter('Food')">Food</button>
+            <button class="filter-btn" onclick="setFilter('Friends')">Friends</button>
+            <button class="filter-btn" onclick="setFilter('India')">India</button>
+            <button class="filter-btn" onclick="setFilter('Germany')">Germany</button>
+            <button class="filter-btn" onclick="setFilter('Campus')">Campus</button>
+            <button class="filter-btn" onclick="setFilter('Bike Routes')">Bike Routes</button>
+            <button class="filter-btn" onclick="setFilter('Thoughts')">Thoughts</button>
+            <button class="filter-btn" onclick="setFilter('Life')">Life</button>
+          </div>
+
+          <button class="view-toggle-btn" id="view-toggle-btn" onclick="toggleViewMode()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+            <span>Archive View</span>
+          </button>
+        </div>
+
+        <!-- Main Display Container (Timeline vs Archive) -->
+        <div id="content-display">
+          <!-- Loading state -->
+          <div class="loader-wrap" id="loader-wrap">
+            <div class="spinner"></div>
+            <p style="color:#64748b; font-size:14px">Loading personal moments...</p>
+          </div>
+
+          <!-- Timeline Grid View (Default) -->
+          <div id="timeline-container" style="display:none"></div>
+
+          <!-- Archive List View -->
+          <div id="archive-container" style="display:none" class="archive-list"></div>
+
+          <!-- Fallback/Empty State -->
+          <div id="empty-state" style="display:none" class="fallback-card">
+            <div style="font-size: 32px; margin-bottom: 12px">🍃</div>
+            <h3 style="font-weight:700; font-size:16px; margin-bottom:8px">No posts found</h3>
+            <p style="color:#64748b; font-size:14px" id="empty-state-msg">No personal posts match the selected category.</p>
+          </div>
+        </div>
+
+        <section class="notes-section" id="notes-section" style="display:none">
+          <div class="notes-section-head">
+            <p class="notes-kicker">Thoughts</p>
+            <h2 class="notes-heading">A few thoughts behind the archive</h2>
+            <!-- <p class="notes-subtext">
+              These public thoughts sit after the photos: small reflections on place, routines, music practice, and why this page exists at all.
+            </p> -->
+          </div>
+          <div class="notes-grid" id="notes-container"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer class="border-t border-[#bae6fd] py-8 px-[var(--page-padding)] bg-white">
+      <div class="max-w-[var(--container)] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="font-body text-[13px] text-[#475569]">
+          © 2025 – <span id="footer-year">2026</span> Sagnik Das
+        </p>
+        <p class="font-body text-[13px] text-[#475569]">
+          Built with care ·
+          <a href="mailto:sagnik@sagnikdas.com" class="text-[#4f46e5] hover:underline" style="text-decoration:none">sagnik@sagnikdas.com</a> ·
+          <a href="/personal" class="personal-link text-[#4f46e5] hover:underline" style="text-decoration:none">Personal Corner</a> ·
+          <a href="/meet" class="text-[#4f46e5] hover:underline" style="text-decoration:none">Book a Meeting</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- ── LIGHTBOX MODAL ── -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <div class="lightbox-container" onclick="event.stopPropagation()">
+        <!-- Image Area -->
+        <div class="lightbox-image-wrap">
+          <img id="lightbox-img" class="lightbox-image" src="" alt="Zoomed view" />
+        </div>
+        <!-- Detail Sidebar -->
+        <div class="lightbox-details">
+          <div class="lightbox-header">
+            <span class="photo-category-badge" id="lightbox-badge" style="position:static">Life</span>
+            <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Close lightbox">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6"  y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="lightbox-body">
+            <h3 id="lightbox-title" class="lightbox-title">Untitled Moment</h3>
+            <p id="lightbox-caption" class="lightbox-caption">No description details available.</p>
+          </div>
+
+          <div class="lightbox-meta-list">
+            <div class="lightbox-meta-item" id="lightbox-meta-date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span id="lightbox-date-text">Unknown Date</span>
+            </div>
+            <div class="lightbox-meta-item" id="lightbox-meta-location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span id="lightbox-location-text">Unknown Location</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PASSWORD-PROTECTED PHOTO UPLOAD ── -->
+    <div id="admin-modal" class="admin-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="admin-dialog-title">
+      <div class="admin-dialog">
+        <div class="admin-dialog-head">
+          <div>
+            <h2 class="admin-dialog-title" id="admin-dialog-title">Manage timeline photos</h2>
+            <p class="admin-dialog-subtitle">Publish new moments or safely edit and remove existing ImageKit photos.</p>
+          </div>
+          <button type="button" class="admin-close" onclick="closeAdminUpload()" aria-label="Close upload dialog">✕</button>
+        </div>
+
+        <section class="admin-pane" id="admin-login-pane">
+          <form id="admin-login-form">
+            <div class="admin-field">
+              <label class="admin-label" for="admin-password">Admin password</label>
+              <input class="admin-input" id="admin-password" name="password" type="password" autocomplete="current-password" minlength="12" required>
+            </div>
+            <p class="admin-status" id="admin-login-status">Enter the admin password to continue.</p>
+            <div class="admin-actions">
+              <span class="admin-dialog-subtitle">The password is verified by the server and is never stored in this page.</span>
+              <button class="admin-primary-btn" type="submit">Unlock</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-pane" id="admin-upload-pane" hidden>
+          <div class="admin-mode-switch" id="admin-mode-switch">
+            <button class="admin-mode-btn is-active" id="admin-create-tab" type="button">New moment</button>
+            <button class="admin-mode-btn" id="admin-manage-tab" type="button">Manage existing</button>
+          </div>
+
+          <form id="admin-upload-form">
+            <div class="admin-grid">
+              <div class="admin-field admin-field--wide">
+                <label class="admin-label" for="admin-title">Title *</label>
+                <input class="admin-input" id="admin-title" name="title" type="text" maxlength="160" required placeholder="A quiet afternoon by the Pegnitz">
+              </div>
+
+              <div class="admin-field admin-field--wide">
+                <label class="admin-label" for="admin-subtitle">Subtitle / story *</label>
+                <textarea class="admin-textarea" id="admin-subtitle" name="subtitle" maxlength="2000" required placeholder="A short note about this moment…"></textarea>
+              </div>
+
+              <div class="admin-field">
+                <label class="admin-label" for="admin-date">Date *</label>
+                <input class="admin-input" id="admin-date" name="date" type="date" required>
+              </div>
+
+              <div class="admin-field">
+                <label class="admin-label" for="admin-category">Category</label>
+                <select class="admin-select" id="admin-category" name="category">
+                  <option>Life</option><option>City</option><option>Travel</option><option>Music</option>
+                  <option>Food</option><option>Friends</option><option>India</option><option>Germany</option>
+                  <option>Campus</option><option>Bike Routes</option><option>Thoughts</option>
+                </select>
+              </div>
+
+              <div class="admin-field admin-field--wide">
+                <label class="admin-label" for="admin-location">Location <span style="font-weight:400;color:#94a3b8">(optional)</span></label>
+                <input class="admin-input" id="admin-location" name="location" type="text" maxlength="160" placeholder="Nürnberg, Germany">
+              </div>
+
+              <div class="admin-field admin-field--wide">
+                <span class="admin-label">Photos *</span>
+                <label class="admin-dropzone" for="admin-photos">
+                  <input id="admin-photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple required>
+                  <strong id="admin-file-summary">Choose up to 12 photos</strong><br>
+                  <span style="font-size:12px;color:#64748b">Click or drop JPEG, PNG, or WebP files here</span>
+                </label>
+                <div class="admin-preview-grid" id="admin-preview-grid"></div>
+              </div>
+
+              <div class="admin-field admin-field--wide">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <span class="admin-label">Links <span style="font-weight:400;color:#94a3b8">(optional)</span></span>
+                  <button class="admin-secondary-btn" type="button" onclick="addAdminLink()">Add link</button>
+                </div>
+                <div id="admin-links"></div>
+              </div>
+            </div>
+
+            <p class="admin-status" id="admin-upload-status">Ready to publish.</p>
+            <div class="admin-actions">
+              <div style="display:flex;align-items:center;gap:8px">
+                <button class="admin-text-btn" id="admin-logout" type="button">Sign out</button>
+                <button class="admin-text-btn" type="button" onclick="closeAdminUpload()">Cancel</button>
+              </div>
+              <button class="admin-primary-btn" id="admin-upload-submit" type="submit">Optimize & publish</button>
+            </div>
+          </form>
+
+          <section id="admin-manage-view" hidden>
+            <div class="admin-manage-heading">
+              <div>
+                <h3>Your timeline moments</h3>
+                <p>Edit their details, remove one photo, or delete a complete moment.</p>
+              </div>
+              <button class="admin-secondary-btn" id="admin-manage-refresh" type="button">Refresh</button>
+            </div>
+            <p class="admin-status" id="admin-manage-status">Loading moments…</p>
+            <div class="admin-moment-list" id="admin-moment-list"></div>
+            <div class="admin-actions">
+              <button class="admin-text-btn" id="admin-manage-logout" type="button">Sign out</button>
+              <button class="admin-text-btn" type="button" onclick="closeAdminUpload()">Close</button>
+            </div>
+          </section>
+
+          <section id="admin-edit-view" hidden>
+            <div class="admin-manage-heading">
+              <div>
+                <h3>Edit timeline moment</h3>
+                <p>Changes apply to every photo grouped in this moment.</p>
+              </div>
+              <button class="admin-secondary-btn" id="admin-edit-back" type="button">Back</button>
+            </div>
+            <form id="admin-edit-form">
+              <input id="admin-edit-entry-id" type="hidden">
+              <div class="admin-grid">
+                <div class="admin-field admin-field--wide">
+                  <label class="admin-label" for="admin-edit-title">Title *</label>
+                  <input class="admin-input" id="admin-edit-title" type="text" maxlength="160" required>
+                </div>
+                <div class="admin-field admin-field--wide">
+                  <label class="admin-label" for="admin-edit-subtitle">Subtitle / story *</label>
+                  <textarea class="admin-textarea" id="admin-edit-subtitle" maxlength="2000" required></textarea>
+                </div>
+                <div class="admin-field">
+                  <label class="admin-label" for="admin-edit-date">Date *</label>
+                  <input class="admin-input" id="admin-edit-date" type="date" required>
+                </div>
+                <div class="admin-field">
+                  <label class="admin-label" for="admin-edit-category">Category</label>
+                  <select class="admin-select" id="admin-edit-category">
+                    <option>Life</option><option>City</option><option>Travel</option><option>Music</option>
+                    <option>Food</option><option>Friends</option><option>India</option><option>Germany</option>
+                    <option>Campus</option><option>Bike Routes</option><option>Thoughts</option>
+                  </select>
+                </div>
+                <div class="admin-field admin-field--wide">
+                  <label class="admin-label" for="admin-edit-location">Location <span style="font-weight:400;color:#94a3b8">(optional)</span></label>
+                  <input class="admin-input" id="admin-edit-location" type="text" maxlength="160">
+                </div>
+                <div class="admin-field admin-field--wide">
+                  <span class="admin-label">Existing photos</span>
+                  <div class="admin-existing-photos" id="admin-existing-photos"></div>
+                </div>
+                <div class="admin-field admin-field--wide">
+                  <span class="admin-label">Add more photos <span style="font-weight:400;color:#94a3b8">(optional)</span></span>
+                  <label class="admin-dropzone admin-add-dropzone" for="admin-edit-photos">
+                    <input id="admin-edit-photos" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+                    <strong id="admin-edit-file-summary">Choose additional photos</strong><br>
+                    <span style="font-size:12px;color:#64748b">They will inherit this moment’s write-up, date, and links</span>
+                  </label>
+                  <div class="admin-preview-grid" id="admin-edit-preview-grid"></div>
+                  <div style="display:flex;justify-content:flex-end">
+                    <button class="admin-secondary-btn" id="admin-add-photos-submit" type="button">Optimize & add photos</button>
+                  </div>
+                </div>
+                <div class="admin-field admin-field--wide">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                    <span class="admin-label">Links <span style="font-weight:400;color:#94a3b8">(optional)</span></span>
+                    <button class="admin-secondary-btn" id="admin-edit-add-link" type="button">Add link</button>
+                  </div>
+                  <div id="admin-edit-links"></div>
+                </div>
+              </div>
+              <p class="admin-status" id="admin-edit-status">Ready to save.</p>
+              <div class="admin-actions">
+                <button class="admin-danger-btn" id="admin-delete-moment" type="button">Delete moment</button>
+                <button class="admin-primary-btn" id="admin-edit-submit" type="submit">Save changes</button>
+              </div>
+            </form>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <!-- ── SCRIPTS ── -->
+    <script>
+      // Global data states
+      let allPhotos = [];
+      let personalNotes = [];
+      let currentFilter = 'All';
+      let currentSubsection = null;
+      let isArchiveMode = false;
+
+      // Metadata for categories
+      const categoryMetadata = {
+        'City': {
+          emoji: '🌆',
+          color: '#e0f2fe',
+          textColor: '#0284c7',
+          desc: 'Offbeat city routes, quiet corners, and urban exploration.'
+        },
+        'Travel': {
+          emoji: '✈️',
+          color: '#fee2e2',
+          textColor: '#dc2626',
+          desc: 'Wanderlust, scenic landscapes, and journeys across borders.'
+        },
+        'Music': {
+          emoji: '🎹',
+          color: '#ede9fe',
+          textColor: '#7c3aed',
+          desc: 'Yamaha PSR-E383 progress and musical learning journey.'
+        },
+        'Food': {
+          emoji: '🍜',
+          color: '#ffedd5',
+          textColor: '#ea580c',
+          desc: 'Cafes, culinary experiments, and local delicacies.'
+        },
+        'Friends': {
+          emoji: '👥',
+          color: '#f1f5f9',
+          textColor: '#475569',
+          desc: 'Unforgettable moments with friends and fellow students.'
+        },
+        'India': {
+          emoji: '🇮🇳',
+          color: '#ffedd5',
+          textColor: '#d97706',
+          desc: 'Occasional memories, stories, and snaps from back home.'
+        },
+        'Germany': {
+          emoji: '🇩🇪',
+          color: '#f3f4f6',
+          textColor: '#1f2937',
+          desc: 'Life in Germany, regional travels, and local observations.'
+        },
+        'Campus': {
+          emoji: '🏫',
+          color: '#e0f2fe',
+          textColor: '#0369a1',
+          desc: 'University life, student groups, and academic moments.'
+        },
+        'Bike Routes': {
+          emoji: '🚲',
+          color: '#dcfce7',
+          textColor: '#16a34a',
+          desc: 'Cycling routes, river paths, and outdoor rides.'
+        },
+        'Thoughts': {
+          emoji: '📝',
+          color: '#fef3c7',
+          textColor: '#d97706',
+          desc: 'Small reflections, readings, and philosophy observations.'
+        },
+        'Life': {
+          emoji: '🌱',
+          color: '#dcfce7',
+          textColor: '#15803d',
+          desc: 'Daily observations, nature walks, and small life moments.'
+        }
+      };
+
+      // DOM Elements
+      const loaderWrap = document.getElementById('loader-wrap');
+      const timelineContainer = document.getElementById('timeline-container');
+      const archiveContainer = document.getElementById('archive-container');
+      const emptyState = document.getElementById('empty-state');
+      const toggleBtn = document.getElementById('view-toggle-btn');
+      const notesSection = document.getElementById('notes-section');
+      const notesContainer = document.getElementById('notes-container');
+
+      // Sync footer year
+      const yearEl = document.getElementById('footer-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Scroll-aware nav threshold
+      const nav = document.getElementById('main-nav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.className = 'fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-300 bg-[rgba(248,250,252,0.85)] backdrop-blur-xl border-b border-[#bae6fd]';
+        } else {
+          nav.className = 'fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-300 bg-transparent';
+        }
+      }, { passive: true });
+
+      // Mobile Menu Toggle
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconMenu = mobileToggle.querySelector('svg:nth-child(1)');
+      const iconClose = mobileToggle.querySelector('svg:nth-child(2)');
+      let menuOpen = false;
+
+      mobileToggle.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.style.display = menuOpen ? 'block' : 'none';
+        iconMenu.style.display = menuOpen ? 'none' : 'block';
+        iconClose.style.display = menuOpen ? 'block' : 'none';
+      });
+
+      // Load Photos
+      async function loadPhotos() {
+        try {
+          // Attempt to load through the worker-backed ImageKit endpoint
+          const response = await fetch('/api/personal-photos');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
+          if (result.fallback || !result.photos || result.photos.length === 0) {
+            console.warn('API reported fallback or empty, loading local fallback data...');
+            await loadLocalFallback();
+          } else {
+            allPhotos = result.photos;
+          }
+        } catch (e) {
+          console.warn('Could not query ImageKit API, attempting fallback...', e);
+          await loadLocalFallback();
+        } finally {
+          processPhotosData();
+        }
+      }
+
+      async function loadLocalFallback() {
+        try {
+          const res = await fetch('/personal-photos-fallback.json');
+          if (!res.ok) throw new Error('Fallback JSON not found');
+          allPhotos = await res.json();
+        } catch (err) {
+          console.error('Failed to load fallback JSON', err);
+          allPhotos = [];
+        }
+      }
+
+      function processPhotosData() {
+        // Render dynamic category smart blocks
+        renderCategoryBlocks();
+        
+        // Handle URL subpages routing
+        handleSubpageRouting();
+
+        // Initial render
+        render();
+      }
+
+      async function loadNotes() {
+        try {
+          const response = await fetch('/generated/personal-notes.json');
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          personalNotes = await response.json();
+        } catch (error) {
+          console.warn('Could not load personal notes JSON.', error);
+          personalNotes = [];
+        } finally {
+          renderNotes();
+        }
+      }
+
+      function renderNotes() {
+        if (!notesSection || !notesContainer) return;
+
+        if (!personalNotes.length) {
+          notesSection.style.display = 'none';
+          return;
+        }
+
+        notesSection.style.display = 'block';
+        notesContainer.innerHTML = personalNotes.map(note => {
+          const tags = Array.isArray(note.tags) ? note.tags : [];
+
+          return `
+            <article class="note-card" id="${escapeHTML(note.anchorId || '')}">
+              <div class="note-meta">
+                <span class="note-category">${escapeHTML(note.category || 'Note')}</span>
+                <span>${escapeHTML(formatFriendlyDate(note.date))}</span>
+                ${note.location ? `<span>${escapeHTML(note.location)}</span>` : ''}
+              </div>
+              <h3 class="note-title">${escapeHTML(note.title)}</h3>
+              <p class="note-summary">${escapeHTML(note.summary || note.description || '')}</p>
+              <div class="note-tags">
+                ${tags.map(tag => `<span class="note-tag">${escapeHTML(tag)}</span>`).join('')}
+              </div>
+              <details class="note-details">
+                <summary>Read note</summary>
+                <div class="note-body">${note.html || ''}</div>
+              </details>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function renderCategoryBlocks() {
+        const grid = document.getElementById('subsection-grid');
+        if (!grid) return;
+        
+        grid.innerHTML = '';
+        
+        // Calculate count for each category
+        const counts = {};
+        allPhotos.forEach(p => {
+          const cat = p.category || 'Life';
+          counts[cat] = (counts[cat] || 0) + 1;
+        });
+
+        // Loop over categories and build cards for ones with counts > 0
+        const categoriesOrder = ['City', 'Travel', 'Music', 'Food', 'Friends', 'India', 'Germany', 'Campus', 'Bike Routes', 'Thoughts', 'Life'];
+        
+        categoriesOrder.forEach(cat => {
+          const count = counts[cat] || 0;
+          if (count === 0) return; // Skip empty categories
+
+          const meta = categoryMetadata[cat] || {
+            emoji: '📷',
+            color: '#f8fafc',
+            textColor: '#64748b',
+            desc: 'Moments and memories.'
+          };
+
+          const card = document.createElement('div');
+          card.className = `subsection-card ${currentFilter === cat ? 'active' : ''}`;
+          card.id = `sub-card-${cat.replace(/\s+/g, '-').toLowerCase()}`;
+          card.onclick = () => {
+            if (currentFilter === cat) {
+              setFilter('All');
+            } else {
+              setFilter(cat);
+              // Scroll to timeline container smoothly
+              document.getElementById('timeline-container')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          };
+
+          card.innerHTML = `
+            <div>
+              <div class="sub-icon" style="background-color: ${meta.color}; color: ${meta.textColor}">${meta.emoji}</div>
+              <div class="sub-title">${cat}</div>
+              <div class="sub-desc">${meta.desc}</div>
+            </div>
+            <div class="sub-count">${count} post${count === 1 ? '' : 's'}</div>
+          `;
+          
+          grid.appendChild(card);
+        });
+      }
+
+      // Handle custom client subpages mapping (/personal/photos, /personal/music, etc.)
+      function handleSubpageRouting() {
+        const path = window.location.pathname.replace(/\/$/, ''); // Remove trailing slash
+        
+        if (path.endsWith('/personal/photos')) {
+          setFilter('All');
+        } else if (path.endsWith('/personal/routes') || path.endsWith('/personal/bike-routes')) {
+          selectSubsection('Nürnberg Slowly', ['City', 'Bike Routes']);
+        } else if (path.endsWith('/personal/music')) {
+          selectSubsection('Learning Keyboard', ['Music']);
+        } else if (path.endsWith('/personal/archive')) {
+          isArchiveMode = true;
+          toggleBtn.querySelector('span').textContent = 'Gallery View';
+          setFilter('All');
+        }
+      }
+
+      // Handle category filtering
+      function setFilter(categoryName) {
+        currentFilter = categoryName;
+        currentSubsection = null;
+        
+        // Reset subsection card styles
+        document.querySelectorAll('.subsection-card').forEach(card => card.classList.remove('active'));
+        
+        // Set filter tab styles
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          if (btn.textContent.trim() === categoryName) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        // Highlight active dynamic card
+        const cardId = `sub-card-${categoryName.replace(/\s+/g, '-').toLowerCase()}`;
+        const activeCard = document.getElementById(cardId);
+        if (activeCard) {
+          activeCard.classList.add('active');
+        }
+
+        render();
+      }
+
+      // Handle subsection card selection
+      function selectSubsection(name, categoriesList) {
+        currentSubsection = { name, categories: categoriesList };
+        currentFilter = null;
+
+        // Set active card style
+        const cardIds = {
+          'Nürnberg Slowly': 'sub-nuremberg',
+          'Learning Keyboard': 'sub-music',
+          'Life Notes': 'sub-notes',
+          'India / Home': 'sub-india',
+          'Small Joys': 'sub-joys'
+        };
+        
+        document.querySelectorAll('.subsection-card').forEach(card => {
+          if (card.id === cardIds[name]) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        // Reset filter tab styles
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+
+        render();
+
+        // Smooth scroll to toolbar
+        document.querySelector('.toolbar').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Toggle between Timeline Gallery and Compact Archive
+      function toggleViewMode() {
+        isArchiveMode = !isArchiveMode;
+        if (isArchiveMode) {
+          toggleBtn.querySelector('span').textContent = 'Gallery View';
+        } else {
+          toggleBtn.querySelector('span').textContent = 'Archive View';
+        }
+        render();
+      }
+
+      // Filter and Sort Helper
+      function getFilteredPhotos() {
+        let photos = [...allPhotos];
+
+        if (currentFilter && currentFilter !== 'All') {
+          photos = photos.filter(p => {
+            const cat = p.category || '';
+            const tags = p.tags || [];
+            return cat.toLowerCase() === currentFilter.toLowerCase() || 
+                   tags.map(t => t.toLowerCase()).includes(currentFilter.toLowerCase());
+          });
+        } else if (currentSubsection) {
+          const lowerCats = currentSubsection.categories.map(c => c.toLowerCase());
+          photos = photos.filter(p => {
+            const cat = (p.category || '').toLowerCase();
+            const tags = (p.tags || []).map(t => t.toLowerCase());
+            return lowerCats.includes(cat) || tags.some(t => lowerCats.includes(t));
+          });
+        }
+
+        // Sort: Newest created/posted first
+        return photos.sort((a, b) => {
+          const dateA = a.date ? new Date(a.date) : new Date(a.createdAt);
+          const dateB = b.date ? new Date(b.date) : new Date(b.createdAt);
+          return dateB - dateA;
+        });
+      }
+
+      // Group photos by Month and Year
+      function groupPhotosByMonth(photos) {
+        const groups = {}; // key: "Month Year"
+        const order = [];  // maintain ordering of groups
+
+        photos.forEach(photo => {
+          let dateObj = new Date(photo.createdAt);
+          if (photo.date) {
+            const parts = photo.date.split('-');
+            if (parts.length >= 2) {
+              dateObj = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parts[2] ? parseInt(parts[2]) : 1);
+            }
+          }
+
+          const monthName = dateObj.toLocaleString('default', { month: 'long' });
+          const year = dateObj.getFullYear();
+          const groupName = `${monthName} ${year}`;
+
+          if (!groups[groupName]) {
+            groups[groupName] = [];
+            order.push(groupName);
+          }
+          groups[groupName].push(photo);
+        });
+
+        return { groups, order };
+      }
+
+      // Main Render Coordinator
+      function render() {
+        loaderWrap.style.display = 'none';
+        
+        const filtered = getFilteredPhotos();
+
+        if (filtered.length === 0) {
+          timelineContainer.style.display = 'none';
+          archiveContainer.style.display = 'none';
+          emptyState.style.display = 'block';
+          if (currentFilter) {
+            document.getElementById('empty-state-msg').textContent = `No posts found under the "${currentFilter}" category.`;
+          } else if (currentSubsection) {
+            document.getElementById('empty-state-msg').textContent = `No posts found under the "${currentSubsection.name}" subsection.`;
+          }
+          return;
+        }
+
+        emptyState.style.display = 'none';
+
+        if (isArchiveMode) {
+          timelineContainer.style.display = 'none';
+          archiveContainer.style.display = 'block';
+          renderArchive(filtered);
+        } else {
+          archiveContainer.style.display = 'none';
+          timelineContainer.style.display = 'block';
+          renderTimeline(filtered);
+        }
+      }
+
+      // Render Gallery Timeline
+      function renderTimeline(photos) {
+        const moments = groupPhotosIntoMoments(photos);
+        const { groups, order } = groupMomentsByMonth(moments);
+
+        let html = `
+          <div class="personal-timeline-shell">
+            <div class="personal-timeline-track" aria-hidden="true"></div>
+            <div class="personal-timeline-progress" aria-hidden="true"></div>
+        `;
+        order.forEach(groupName => {
+          html += `
+            <section class="moment-month">
+              <h2 class="moment-month-title">${escapeHTML(groupName)}</h2>
+              ${groups[groupName].map(moment => renderMomentCard(moment)).join('')}
+            </section>
+          `;
+        });
+        html += '</div>';
+
+        timelineContainer.innerHTML = html;
+        initializeMomentAnimations();
+      }
+
+      function groupPhotosIntoMoments(photos) {
+        const moments = new Map();
+        photos.forEach(photo => {
+          const key = photo.entryId || photo.publicId || `${photo.date}-${photo.title}`;
+          if (!moments.has(key)) {
+            moments.set(key, {
+              id: key,
+              title: photo.title || 'Untitled moment',
+              subtitle: photo.subtitle || photo.caption || '',
+              date: photo.date || (photo.createdAt || '').split('T')[0],
+              createdAt: photo.createdAt,
+              category: photo.category || 'Life',
+              location: photo.location || '',
+              links: Array.isArray(photo.links) ? photo.links : [],
+              photos: []
+            });
+          }
+          moments.get(key).photos.push(photo);
+        });
+
+        return Array.from(moments.values()).map(moment => {
+          moment.photos.sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+          return moment;
+        }).sort((a, b) => momentDate(b) - momentDate(a));
+      }
+
+      function groupMomentsByMonth(moments) {
+        const groups = {};
+        const order = [];
+        moments.forEach(moment => {
+          const date = momentDate(moment);
+          const groupName = date.toLocaleString(undefined, { month: 'long', year: 'numeric' });
+          if (!groups[groupName]) {
+            groups[groupName] = [];
+            order.push(groupName);
+          }
+          groups[groupName].push(moment);
+        });
+        return { groups, order };
+      }
+
+      function momentDate(moment) {
+        if (moment.date) {
+          const parts = moment.date.split('-').map(Number);
+          if (parts.length === 3) return new Date(parts[0], parts[1] - 1, parts[2]);
+        }
+        const fallback = new Date(moment.createdAt || 0);
+        return Number.isNaN(fallback.getTime()) ? new Date(0) : fallback;
+      }
+
+      function renderMomentCard(moment) {
+        const displayDate = momentDate(moment).toLocaleDateString(undefined, {
+          day: 'numeric', month: 'short', year: 'numeric'
+        });
+        const count = Math.min(moment.photos.length, 5);
+        const links = (moment.links || []).map(link => `
+          <a class="moment-link" href="${escapeHTML(link.url)}" target="_blank" rel="noopener noreferrer">
+            ${escapeHTML(link.label)} <span aria-hidden="true">↗</span>
+          </a>
+        `).join('');
+        const location = moment.location ? `<span class="moment-meta">⌖ ${escapeHTML(moment.location)}</span>` : '';
+        const footer = location || links ? `
+          <footer class="moment-footer">
+            ${location}
+            ${links}
+          </footer>
+        ` : '';
+
+        return `
+          <article class="moment-entry">
+            <span class="moment-dot" aria-hidden="true"></span>
+            <div class="moment-card">
+              <div class="moment-heading-row">
+                <div>
+                  <h3 class="moment-title">${escapeHTML(moment.title)}</h3>
+                  <p class="moment-subtitle">${escapeHTML(moment.subtitle)}</p>
+                </div>
+                <time class="moment-date" datetime="${escapeHTML(moment.date)}">${escapeHTML(displayDate)}</time>
+              </div>
+              <div class="moment-gallery" data-count="${count}">
+                ${moment.photos.map((photo, index) => {
+                  const serialized = serializePhoto(photo);
+                  return `
+                    <button class="moment-photo" type="button" onclick="openLightbox('${serialized}')" aria-label="Open ${escapeHTML(photo.alt || moment.title)}">
+                      <img src="${escapeHTML(photo.displayUrl || photo.thumbnailUrl || photo.imageUrl)}" alt="${escapeHTML(photo.alt || moment.title)}" loading="lazy" decoding="async">
+                      ${moment.photos.length > 1 ? `<span class="moment-photo-index">${index + 1}/${moment.photos.length}</span>` : ''}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+              ${footer}
+            </div>
+          </article>
+        `;
+      }
+
+      function initializeMomentAnimations() {
+        const shell = timelineContainer.querySelector('.personal-timeline-shell');
+        if (!shell) return;
+        const entries = shell.querySelectorAll('.moment-entry');
+        const observer = new IntersectionObserver(items => {
+          items.forEach(item => {
+            if (item.isIntersecting) {
+              item.target.classList.add('is-visible');
+              observer.unobserve(item.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        entries.forEach(entry => observer.observe(entry));
+
+        if (!window.personalTimelineProgressBound) {
+          window.personalTimelineProgressBound = true;
+          const update = () => {
+            const activeShell = timelineContainer.querySelector('.personal-timeline-shell');
+            if (!activeShell) return;
+            const rect = activeShell.getBoundingClientRect();
+            const cursor = window.innerHeight * 0.56;
+            const progress = Math.max(0, Math.min(1, (cursor - rect.top) / rect.height));
+            activeShell.style.setProperty('--trace-progress', progress.toFixed(3));
+          };
+          window.addEventListener('scroll', update, { passive: true });
+          window.addEventListener('resize', update, { passive: true });
+          update();
+        }
+      }
+
+      // Render Archive View (Compact List)
+      function renderArchive(photos) {
+        const { groups, order } = groupMomentsByMonth(groupPhotosIntoMoments(photos));
+        
+        let html = '';
+        order.forEach(groupName => {
+          const groupMoments = groups[groupName];
+          html += `
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; color:#0f172a; margin-bottom:12px; border-bottom:1px solid #f1f5f9; padding-bottom:6px">${groupName}</h3>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                ${groupMoments.map(moment => {
+                  const photo = moment.photos[0];
+                  const serialized = serializePhoto(photo);
+                  const date = momentDate(moment);
+                  const displayDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}`;
+                  const photoCount = moment.photos.length > 1 ? ` <span aria-label="${moment.photos.length} photos">· ${moment.photos.length} photos</span>` : '';
+
+                  return `
+                    <div class="archive-item" onclick="openLightbox('${serialized}')">
+                      <div class="archive-left">
+                        <span class="archive-date">${displayDate}</span>
+                        <span class="archive-title">${escapeHTML(moment.title)}${photoCount}</span>
+                      </div>
+                      <span class="archive-category">${escapeHTML(moment.category || 'Life')}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        });
+
+        archiveContainer.innerHTML = html;
+      }
+
+      // Lightbox Actions
+      function openLightbox(serializedPhoto) {
+        const photo = JSON.parse(decodeURIComponent(serializedPhoto));
+        const modal = document.getElementById('lightbox');
+        
+        document.getElementById('lightbox-img').src = photo.imageUrl;
+        document.getElementById('lightbox-img').alt = photo.alt;
+        document.getElementById('lightbox-badge').textContent = photo.category || 'Life';
+        document.getElementById('lightbox-title').textContent = photo.title;
+        document.getElementById('lightbox-caption').textContent = photo.caption || 'No description provided.';
+        
+        // Date Meta
+        let dateStr = 'Unknown Date';
+        if (photo.date) {
+          const parts = photo.date.split('-');
+          const year = parts[0];
+          const monthVal = parseInt(parts[1], 10);
+          const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+          dateStr = parts[2] ? `${months[monthVal - 1]} ${parts[2]}, ${year}` : `${months[monthVal - 1]} ${year}`;
+        } else if (photo.createdAt) {
+          const cDate = new Date(photo.createdAt);
+          dateStr = cDate.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        document.getElementById('lightbox-date-text').textContent = dateStr;
+
+        // Location Meta
+        const locWrapper = document.getElementById('lightbox-meta-location');
+        if (photo.location) {
+          locWrapper.style.display = 'flex';
+          document.getElementById('lightbox-location-text').textContent = photo.location;
+        } else {
+          locWrapper.style.display = 'none';
+        }
+
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Disable page scrolling
+      }
+
+      function serializePhoto(photo) {
+        return encodeURIComponent(JSON.stringify(photo)).replace(/'/g, '%27');
+      }
+
+      function closeLightbox() {
+        const modal = document.getElementById('lightbox');
+        modal.classList.remove('open');
+        document.body.style.overflow = ''; // Re-enable page scrolling
+        // Clear image to avoid flash of old image next time
+        setTimeout(() => {
+          document.getElementById('lightbox-img').src = '';
+        }, 300);
+      }
+
+      // Keyboard support for Lightbox
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      });
+
+      // Escape HTML utility
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function formatFriendlyDate(dateStr) {
+        const parsed = new Date(dateStr);
+        if (Number.isNaN(parsed.getTime())) return dateStr || '';
+        return parsed.toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      }
+
+      // Bootstrap Page
+      loadPhotos();
+      loadNotes();
+    </script>
+    <script src="./assets/personal-admin.js?v=4"></script>
+  </body>
+</html>

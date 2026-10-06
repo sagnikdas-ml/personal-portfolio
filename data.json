@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "subtitle": "Data & AI Engineer",
+    "name": "Sagnik Das",
+    "subheading": "I build reliable AI and data systems, from multilingual LLM workflows to production cloud pipelines.",
+    "bio": "I am completing an M.Sc. thesis on whether machine translation to English can improve Bengali reasoning across large language models, including a prompt- and model-aware inference router. Previously at Infosys, I built SAP-to-BigQuery pipelines for Google Cloud Cortex and data-lineage workflows for HSBC's restricted banking data.",
+    "socials": [
+      { "name": "GitHub", "url": "https://github.com/sagnikdas-ml", "icon": "Github" },
+      { "name": "LinkedIn", "url": "https://www.linkedin.com/in/sagnik-das/", "icon": "Linkedin" },
+      { "name": "Blog", "url": "https://sagnikdas.com/blog/", "icon": "Rss" },
+      { "name": "Email", "url": "mailto:sagnik@sagnikdas.com", "icon": "Mail" }
+    ]
+  },
+  "about": {
+    "heading": "Sagnik Das — Data & AI Engineer based in Germany",
+    "paragraph1": "My current focus is an M.Sc. thesis at Technische Universität Nürnberg (UTN) on machine-translation inference for low-resource Bengali NLP. I compare direct and translated inference across four LLMs and five datasets, analyze translation failures behind a preliminary 27.2-point Belebele gain, and use 35.6 points of oracle headroom to develop a prompt- and model-aware router. Before the master's, I worked at Infosys on Google Cloud Cortex and HSBC projects: building Python/Cloud Composer pipelines from SAP ECC and S/4HANA into BigQuery, optimizing views by 25%, and creating PySpark/Solidatus lineage workflows that improved data-lifecycle visibility by 30%.",
+    "stats": [
+      { "value": "6+", "label": "Years Industry" },
+      { "value": "M.Sc.", "label": "AI & Robotics" },
+      { "value": "4+", "label": "Organizations" }
+    ]
+  },
+  "experience": [
+    {
+      "id": "utn",
+      "company": "Technische Universität Nürnberg (UTN)",
+      "role": "Student Assistant, Applied AI",
+      "period": "Feb 2026 – Present",
+      "description": "Built a Qwen 0.5B PEFT/RAG epistemology chatbot on Hugging Face Spaces, with optional Groq inference, and piloted it with about 50 students. Also built an LSE professor portfolio and automated seminar-site updates from Google Sheets."
+    },
+    {
+      "id": "infosys",
+      "company": "Infosys Limited",
+      "role": "Senior Associate Consultant",
+      "period": "May 2022 – Sep 2024",
+      "description": "Built Python DAGs in Cloud Composer for SAP ECC/S/4HANA-to-BigQuery CDC pipelines, plus optimized SQL views and materialized views that cut processing time by 25%. Developed Looker dashboards and Python/PySpark lineage workflows for restricted banking data, improving lifecycle visibility by 30%."
+    },
+    {
+      "id": "buddi",
+      "company": "BUDDI AI",
+      "role": "Senior Software Engineer (R&D)",
+      "period": "Jun 2021 – May 2022",
+      "description": "Built Scala/Spark de-identification services for PDF and HL7 ingestion, with HIPAA-compliant redaction and pseudonymization that preserved record linkage. Added OCR and table extraction, PostgreSQL metadata, authenticated access, and a Python/FastAPI version for additional clients."
+    },
+    {
+      "id": "wipro",
+      "company": "Wipro Technologies",
+      "role": "Senior Executive (Data Analysis, Engineering R&D)",
+      "period": "Aug 2018 – Jun 2021",
+      "description": "Built a Python staffing system that matched 200K+ employee resumes to project job descriptions and surfaced released employees for open roles. Automated alerts to project and workforce managers, cutting staffing overhead by 40%, and built granular HTML/CSS views with Excel exports."
+    }
+  ],
+  "skills": [
+    { "title": "Data Engineering & Cloud", "skills": ["Python", "Apache Spark", "PySpark", "Cloud Composer", "Airflow", "BigQuery", "SAP ECC", "SAP S/4HANA", "Looker", "Solidatus"] },
+    { "title": "LLM Engineering", "skills": ["PyTorch", "Hugging Face Transformers", "Hugging Face Spaces", "Qwen", "RAG", "PEFT", "LoRA", "QLoRA", "Groq API", "Claude API"] },
+    { "title": "Backend, Privacy & Healthcare", "skills": ["Scala", "FastAPI", "Play Framework", "PostgreSQL", "REST APIs", "Authentication", "HL7", "OCR", "De-identification", "Redaction", "Pseudonymization"] },
+    { "title": "Computer Vision & Edge AI", "skills": ["Residual CNNs", "BDD100K", "Raspberry Pi 5", "ESP32-CAM", "GPIO", "Real-time Inference"] },
+    { "title": "Automation & Engineering Tools", "skills": ["HTML5", "CSS3", "Google Sheets", "Apps Script", "Excel Automation", "Git", "GitHub", "GitLab", "Linux", "LaTeX"] },
+    { "title": "Certifications & Languages", "skills": ["Google Associate Cloud Engineer", "Google Cloud Digital Leader", "English C1", "German B1", "Bengali Native", "Hindi Conversational"] }
+  ],
+  "research": [
+    { "title": "Low-Resource Bengali LLM Reasoning", "description": "Evaluating how severe training-data imbalance affects reasoning in Bengali and where model behavior changes across four LLMs and five benchmark datasets." },
+    { "title": "Machine Translation as Inference", "description": "Comparing direct Bengali inference with translation-to-English pipelines, including a preliminary 27.2-point gain on Belebele with Tiny Aya Fire." },
+    { "title": "Prompt- and Model-Aware Routing", "description": "Using up to 35.6 points of oracle headroom to develop a router that selects the most effective inference path for each prompt and model." },
+    { "title": "Translation Failure Analysis", "description": "Tracing when machine translation helps or harms downstream reasoning, with emphasis on semantic preservation and reproducible evaluation." },
+    { "title": "Applied AI for Education", "description": "Building specialist RAG and fine-tuned learning tools grounded in professor-curated content and validating them with real student cohorts." }
+  ],
+  "projects": [
+    {
+      "id": "bengali-llm-thesis",
+      "title": "Bengali NLP via Machine-Translation Inference",
+      "shortTitle": "Bengali NLP / LLM Thesis",
+      "description": "M.Sc. thesis comparing direct and machine-translation inference across four LLMs and five Bengali datasets. Current work analyzes a preliminary 27.2-point Belebele gain and trains a prompt- and model-aware inference router.",
+      "tags": ["Bengali NLP", "LLMs", "Machine Translation", "Evaluation", "Inference Routing"],
+      "status": "M.Sc. Thesis",
+      "links": { "github": null, "caseStudy": null }
+    },
+    {
+      "id": "epistemology-chatbot",
+      "title": "Epistemology Course Chatbot",
+      "shortTitle": "Epistemology Course Chatbot",
+      "description": "A Qwen 0.5B PEFT/RAG assistant grounded in professor-curated epistemology course material, with optional Groq inference. Deployed on Hugging Face Spaces and piloted with about 50 students.",
+      "tags": ["Qwen 0.5B", "PEFT", "RAG", "Hugging Face Spaces", "Groq", "Education"],
+      "status": "Live Pilot",
+      "links": { "github": null, "demo": "https://sagnikdas-ml-epistemology-coursebot.hf.space/" }
+    },
+    {
+      "id": "smart-bike",
+      "title": "Smart Bike Light System",
+      "shortTitle": "Smart Bike Light Perception System",
+      "description": "Weakly supervised residual CNN trained on 70K+ BDD100K samples for off/dim/high-beam control. Achieved 93.99% test accuracy and 20.4 ms inference (49 FPS) on Raspberry Pi 5, with ESP32-CAM video and GPIO relay control.",
+      "tags": ["Computer Vision", "Residual CNN", "BDD100K", "Raspberry Pi 5", "ESP32-CAM", "Edge AI"],
+      "status": "Academic Project",
+      "links": { "github": null }
+    },
+    {
+      "id": "seminar-website",
+      "title": "Seminar Website Automation",
+      "shortTitle": "Seminar Website / No-code Workflow",
+      "description": "A maintainable seminar website where content is managed via Google Sheets — making event updates easy without editing code directly. Built for academic seminar use.",
+      "tags": ["Web", "Automation", "Google Sheets", "Cloudflare Workers"],
+      "status": "Deployed",
+      "links": { "github": null, "demo": "https://epistemologyseminars.miklosredei.workers.dev/" }
+    }
+  ],
+  "things_built": [
+    {
+      "title": "Epistemology Seminar Website",
+      "description": "A seminar website built as part of my HiWi work for Prof. Miklós Rédei. It helps organize epistemology seminar information, schedules, and links in a simple, accessible format — maintained non-technically via Google Sheets.",
+      "url": "https://epistemologyseminars.miklosredei.workers.dev/",
+      "for": "Prof. Miklós Rédei, TU Nürnberg"
+    },
+    {
+      "title": "Epistemology Course Chatbot",
+      "description": "A course-support chatbot built for students working with epistemology course material. Retrieves answers from course PDFs and supports essay preparation. Made as part of my HiWi work for Prof. Miklós Rédei.",
+      "url": "https://sagnikdas-ml-epistemology-coursebot.hf.space/",
+      "for": "Students, Prof. Miklós Rédei's course at UTN"
+    },
+    {
+      "title": "Prof. Miklós Rédei's Personal Website Revamp",
+      "description": "Revamped Prof. Miklós Rédei's personal academic website as part of my HiWi role, improving its presentation, navigation, and usability while keeping the content exactly as he intended.",
+      "url": "https://personal.lse.ac.uk/redeim/",
+      "for": "Prof. Miklós Rédei, LSE / TU Nürnberg"
+    }
+  ]
+}

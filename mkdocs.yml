@@ -1,0 +1,30 @@
+site_name: Simply ML
+site_url: https://sagnikdas.com/blog/
+site_description: Exploring machine learning, LLM, and computer vision—practical insights from research and real-world AI systems. Curated by Sagnik Das.
+site_author: Sagnik Das
+docs_dir: generated/blog-docs
+site_dir: blog
+use_directory_urls: true
+theme:
+  name: mkdocs
+  custom_dir: mkdocs-theme
+nav:
+  - Blog: index.md
+extra_css:
+  - stylesheets/blog.css
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+markdown_extensions:
+  - attr_list
+  - tables
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+watch:
+  - content/blog
+  - content/personal-notes
+  - blog-assets
+  - mkdocs-theme
+extra:
+  og_image: https://avatars.githubusercontent.com/u/73765575?v=4

@@ -1,0 +1,18 @@
+{
+  "name": "sagnikdas-portfolio",
+  "version": "1.0.0",
+  "description": "Sagnik Das Portfolio Website - Skyblue Theme",
+  "scripts": {
+    "dev": "npx serve .",
+    "dev:worker": "npx wrangler dev --persist-to /tmp/dev-portfolio-wrangler-state",
+    "setup:blog": "python3 -m venv .venv && .venv/bin/python -m pip install -r requirements-blog.txt",
+    "build:content": "node scripts/build-content.js",
+    "build:blog": "if [ -x .venv/bin/python ]; then .venv/bin/python -m mkdocs build --clean; else python3 -m venv .venv && .venv/bin/python -m pip install -r requirements-blog.txt && .venv/bin/python -m mkdocs build --clean; fi",
+    "build": "npm run build:content && npm run build:blog",
+    "deploy:vercel": "npx vercel --prod",
+    "deploy:cloudflare": "npm run build && npx wrangler deploy"
+  },
+  "keywords": [],
+  "author": "Sagnik Das",
+  "license": "MIT"
+}

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+  <meta name="description"
+    content="An introduction to variational autoencoders and why they matter for understanding the foundations of generative AI.">
+  <meta name="author" content="Sagnik Das">
+
+  <link rel="canonical" href="https://sagnikdas.com/blog/variational-autoencoders-secret-sauce-genai/">
+
+  <link rel="icon" href="/public/favicon.png" type="image/png">
+
+  <title>Why Variational Autoencoders Are the Secret Sauce of the GenAI Revolution | Simply ML</title>
+
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/fontawesome.min.css" rel="stylesheet">
+  <link href="../css/brands.min.css" rel="stylesheet">
+  <link href="../css/solid.min.css" rel="stylesheet">
+  <link href="../css/v4-font-face.min.css" rel="stylesheet">
+  <link href="../css/base.css" rel="stylesheet">
+  <link id="hljs-light" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="hljs-dark" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+  <link href="../stylesheets/blog.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+
+
+
+
+  <meta name="robots" content="index, follow">
+
+  <meta name="keywords" content="GenAI, VAE, variational autoencoders, deep learning, machine learning">
+
+
+  <meta property="og:url" content="https://sagnikdas.com/blog/variational-autoencoders-secret-sauce-genai/">
+
+  <meta property="og:site_name" content="Simply ML">
+  <meta property="og:type" content="article">
+  <meta property="og:title"
+    content="Why Variational Autoencoders Are the Secret Sauce of the GenAI Revolution | Simply ML">
+  <meta property="og:description"
+    content="An introduction to variational autoencoders and why they matter for understanding the foundations of generative AI.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+
+  <meta property="article:published_time" content="2025-07-31">
+  <meta property="article:modified_time" content="2025-07-31">
+
+
+
+  <meta property="article:tag" content="GenAI">
+
+  <meta property="article:tag" content="VAE">
+
+  <meta property="article:tag" content="variational autoencoders">
+
+  <meta property="article:tag" content="deep learning">
+
+  <meta property="article:tag" content="machine learning">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+    content="Why Variational Autoencoders Are the Secret Sauce of the GenAI Revolution | Simply ML">
+  <meta name="twitter:description"
+    content="An introduction to variational autoencoders and why they matter for understanding the foundations of generative AI.">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+  <script type="application/ld+json">
+
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": "https://sagnikdas.com/blog/variational-autoencoders-secret-sauce-genai/#post",
+      "mainEntityOfPage": "https://sagnikdas.com/blog/variational-autoencoders-secret-sauce-genai/",
+      "headline": "Why Variational Autoencoders Are the Secret Sauce of the GenAI Revolution",
+      "description": "An introduction to variational autoencoders and why they matter for understanding the foundations of generative AI.",
+      "url": "https://sagnikdas.com/blog/variational-autoencoders-secret-sauce-genai/",
+      
+      "datePublished": "2025-07-31",
+      "dateModified": "2025-07-31",
+      
+      
+      "articleSection": "Foundations",
+      
+      
+      "keywords": "GenAI, VAE, variational autoencoders, deep learning, machine learning",
+      
+      "author": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/",
+        "image": "https://avatars.githubusercontent.com/u/73765575?v=4"
+      },
+      "image": "https://avatars.githubusercontent.com/u/73765575?v=4",
+      "inLanguage": "en"
+    }
+    
+  </script>
+
+</head>
+
+<body>
+  <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="..">Simply ML</a>
+
+      <!-- Expanded navigation -->
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav blog-nav-list">
+          <li class="nav-item">
+            <a href=".." class="nav-link ">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/personal" class="nav-link">Personal</a>
+          </li>
+          <li class="nav-item">
+            <a href="/meet" class="nav-link">Meet</a>
+          </li>
+        </ul>
+
+
+        <ul class="nav navbar-nav ms-md-auto">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse"
+              data-bs-target="#toc-collapse" title="Table of Contents">
+              <span class="fa fa-angle-down"></span>
+            </button>
+          </div>
+
+
+          <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+            <ul class="nav flex-column">
+
+              <li class="nav-item" data-bs-level="1"><a
+                  href="#why-variational-autoencoders-are-the-secret-sauce-of-the-genai-revolution" class="nav-link">Why
+                  Variational Autoencoders Are the Secret Sauce of the GenAI Revolution</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item" data-bs-level="2"><a href="#what-is-a-variational-autoencoder"
+                      class="nav-link">What is a variational autoencoder?</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#how-does-it-work" class="nav-link">How does it
+                      work?</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#math-behind-the-magic" class="nav-link">Math behind
+                      the magic</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#core-intuition" class="nav-link">Core intuition</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#inference-phase-from-latent-code-to-new-data"
+                      class="nav-link">Inference phase: from latent code to new data</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#the-elbo-reparameterization-trick"
+                      class="nav-link">The ELBO reparameterization trick</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#closed-form-kl-divergence"
+                      class="nav-link">Closed-form KL divergence</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#simplified-loss" class="nav-link">Simplified loss</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#vae-algorithm" class="nav-link">VAE algorithm</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#conclusion" class="nav-link">Conclusion</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#key-takeaways" class="nav-link">Key takeaways</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#the-road-ahead" class="nav-link">The road ahead</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <p><a class="blog-back-link" href="../">← Back to blog</a></p>
+        <div class="blog-post-meta">
+          <span class="blog-post-category">Foundations</span>
+          <span>Jul 31, 2025</span>
+          <span>7 min read</span>
+        </div>
+
+        <h1 id="why-variational-autoencoders-are-the-secret-sauce-of-the-genai-revolution">Why Variational Autoencoders
+          Are the Secret Sauce of the GenAI Revolution<a class="headerlink"
+            href="#why-variational-autoencoders-are-the-secret-sauce-of-the-genai-revolution"
+            title="Permanent link">&para;</a></h1>
+        <div class="blog-tag-row"><span class="blog-tag">GenAI</span><span class="blog-tag">VAE</span><span
+            class="blog-tag">variational autoencoders</span><span class="blog-tag">deep learning</span><span
+            class="blog-tag">machine learning</span></div>
+
+        <p>Generative AI is transforming the landscape of technology, powering applications that can generate audio,
+          art, and photorealistic images. We have all seen waves of AI-generated styles become suddenly popular, where
+          millions of users generate new visuals by uploading their own photos. Although the most advanced image
+          generation systems now rely more on diffusion models than classic variational autoencoders, it is still useful
+          to understand how the field got here.</p>
+        <p>Generation is a fundamentally different problem from classification. Human beings are often better at
+          distinguishing and judging than creating from scratch under formal constraints, and the same is true for
+          machines. Classification tasks are comparatively straightforward for computational systems, whereas generation
+          requires more intricate techniques and a much stronger grasp of structure in the data. Variational
+          autoencoders were one of the foundational approaches that made this transition possible.</p>
+        <h2 id="what-is-a-variational-autoencoder">What is a variational autoencoder?<a class="headerlink"
+            href="#what-is-a-variational-autoencoder" title="Permanent link">&para;</a></h2>
+        <p>A Variational Autoencoder, or VAE, learns to encode real-world data such as images, text, or speech into a
+          compressed latent space before reconstructing or generating new data points from that space.</p>
+        <h2 id="how-does-it-work">How does it work?<a class="headerlink" href="#how-does-it-work"
+            title="Permanent link">&para;</a></h2>
+        <ul>
+          <li><strong>Encoder:</strong> projects the input <span class="arithmatex">\(x\)</span> into a
+            lower-dimensional latent variable <span class="arithmatex">\(z\)</span></li>
+          <li><strong>Latent space:</strong> a structured lower-dimensional representation that captures meaningful
+            variation in the data</li>
+          <li><strong>Decoder:</strong> regenerates data from sampled latent representations so the model can create new
+            outputs, not just reconstruct the input</li>
+        </ul>
+        <div class="arithmatex">\[
+          \text{Input dimension: } x \in \mathbb{R}^D
+          \]</div>
+        <div class="arithmatex">\[
+          \text{Latent dimension: } z \in \mathbb{R}^K
+          \]</div>
+        <div class="arithmatex">\[
+          \text{where } K \ll D
+          \]</div>
+        <p><img alt="Basic VAE architecture" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/VAE_Basic.png" />
+        </p>
+        <p><em>Image by EugenioTL, CC BY-SA 4.0 via Wikimedia Commons.</em></p>
+        <h2 id="math-behind-the-magic">Math behind the magic<a class="headerlink" href="#math-behind-the-magic"
+            title="Permanent link">&para;</a></h2>
+        <p>The core of VAEs is the optimization of the Evidence Lower Bound, or ELBO, which balances two goals:</p>
+        <ul>
+          <li>Accurately reconstructing data from the latent space</li>
+          <li>Ensuring the latent encodings follow a regular, well-behaved distribution, usually Gaussian</li>
+        </ul>
+        <div class="arithmatex">\[
+          \mathcal{L}(x_n, z_n, \psi, \theta^x)
+          = -\log p(x_n \mid z_n, \theta^x)
+          + D_{KL}\big(q(z_n \mid x_n, \psi) \,\|\, p(z_n)\big)
+          \]</div>
+        <p>where:</p>
+        <div class="arithmatex">\[
+          p(x_n \mid z_n, \theta^x)
+          \]</div>
+        <p>is the likelihood term for reconstructing the data,</p>
+        <div class="arithmatex">\[
+          q(z_n \mid x_n, \psi)
+          \]</div>
+        <p>is the approximate posterior from the encoder, and</p>
+        <div class="arithmatex">\[
+          p(z_n)
+          \]</div>
+        <p>is the prior over latent variables, typically a standard normal. The KL term regularizes the latent space.
+        </p>
+        <p>The <strong>reparameterization trick</strong> is what allows gradients to flow through stochastic nodes,
+          which is crucial for scaling generative models with gradient descent.</p>
+        <h2 id="core-intuition">Core intuition<a class="headerlink" href="#core-intuition"
+            title="Permanent link">&para;</a></h2>
+        <p>So far, we have defined the loss function that trains the model to reconstruct or generate data samples.
+          Minimizing the loss pushes the decoder output closer to the original input. Using backpropagation and
+          stochastic gradient descent, we compute gradients with respect to the network parameters by applying the chain
+          rule backward through the network layers, from the decoder output through the latent space and back to the
+          encoder input.</p>
+        <p>The full ELBO can be understood as a combination of two parts:</p>
+        <ul>
+          <li><strong>Reconstruction loss:</strong> measures how well the decoder recreates the original input from the
+            latent representation</li>
+          <li><strong>KL divergence loss:</strong> regularizes the encoder’s latent distribution to stay close to a
+            standard normal distribution</li>
+        </ul>
+        <h2 id="inference-phase-from-latent-code-to-new-data">Inference phase: from latent code to new data<a
+            class="headerlink" href="#inference-phase-from-latent-code-to-new-data" title="Permanent link">&para;</a>
+        </h2>
+        <p>After training, the encoder is no longer required for generation. Inference starts from the latent space and
+          uses the decoder to create new samples.</p>
+        <p>VAE inference follows three broad steps:</p>
+        <ul>
+          <li>Sample from the prior</li>
+          <li>Use the decoder to compute output distribution parameters</li>
+          <li>Generate the output from that decoded representation</li>
+        </ul>
+        <div class="arithmatex">\[
+          z' \sim p(z)
+          \]</div>
+        <div class="arithmatex">\[
+          \hat{\theta}^x = f(z'; \theta^x)
+          \]</div>
+        <div class="arithmatex">\[
+          x \sim p(x \mid \hat{\theta}^x)
+          \]</div>
+        <h2 id="the-elbo-reparameterization-trick">The ELBO reparameterization trick<a class="headerlink"
+            href="#the-elbo-reparameterization-trick" title="Permanent link">&para;</a></h2>
+        <p>There is a critical mathematical challenge at the center of VAE training: how do you backpropagate through
+          random sampling?</p>
+        <p>The answer is the <strong>reparameterization trick</strong>:</p>
+        <div class="arithmatex">\[
+          z_n = \mu(x_n; \psi) + \sigma(x_n; \psi)\,\epsilon_n
+          \]</div>
+        <p>where:</p>
+        <div class="arithmatex">\[
+          \epsilon_n \sim \mathcal{N}(0, 1)
+          \]</div>
+        <p>Instead of sampling <span class="arithmatex">\(z\)</span> directly from the encoder output distribution, we
+          rewrite it as a deterministic transformation of a random noise term. This isolates the randomness in <span
+            class="arithmatex">\(\epsilon_n\)</span> and allows gradients to pass through <span
+            class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\sigma\)</span>.</p>
+        <p>That transforms the optimization into something trainable with standard gradient-based methods.</p>
+        <p><img alt="Reparameterization schematic"
+            src="https://www.researchgate.net/publication/374693185/figure/fig1/AS:11431281198179610@1697206307688/Simplified-schematic-of-the-VAE-variational-autoencoder-VAE-models-Fig-1-are.png" />
+        </p>
+        <p><em>Source: Puchalski and Komorska, 2023.</em></p>
+        <h2 id="closed-form-kl-divergence">Closed-form KL divergence<a class="headerlink"
+            href="#closed-form-kl-divergence" title="Permanent link">&para;</a></h2>
+        <p>When dealing with Gaussian distributions, the KL divergence can be computed analytically:</p>
+        <div class="arithmatex">\[
+          D_{KL}\big(q(z_n \mid x_n, \psi), \mathcal{N}(0,1)\big)
+          \propto
+          -\log \sigma(x_n; \psi)
+          + \frac{1}{2}\sigma(x_n; \psi)^2
+          + \frac{1}{2}\mu(x_n; \psi)^2
+          \]</div>
+        <p>Without the reparameterization trick, VAE training would not be practical. It is the bridge that lets us:</p>
+        <ul>
+          <li>Maintain the probabilistic structure of the latent space</li>
+          <li>Use gradient-based optimization</li>
+          <li>Scale training to higher-dimensional data</li>
+        </ul>
+        <h2 id="simplified-loss">Simplified loss<a class="headerlink" href="#simplified-loss"
+            title="Permanent link">&para;</a></h2>
+        <p>In practice, people often use a simplified version of the VAE objective that is easier to implement and
+          train.</p>
+        <p>Instead of sampling from the decoder’s output distribution during training, we can use the decoder mean
+          directly as the reconstruction:</p>
+        <div class="arithmatex">\[
+          \hat{x} = f(z_n; \theta^x)_\mu
+          \]</div>
+        <p>This leads to a more implementation-friendly loss built from two familiar pieces:</p>
+        <ul>
+          <li>Mean squared reconstruction error</li>
+          <li>Analytical KL regularization</li>
+        </ul>
+        <h3 id="why-this-works-in-practice">Why this works in practice<a class="headerlink"
+            href="#why-this-works-in-practice" title="Permanent link">&para;</a></h3>
+        <ul>
+          <li><strong>Computational efficiency:</strong> no need to sample from the decoder distribution during training
+          </li>
+          <li><strong>Implementation simplicity:</strong> the loss is easier to code and debug</li>
+          <li><strong>Stable training:</strong> fewer stochastic elements in the decoder path can improve convergence
+          </li>
+          <li><strong>Retained generative power:</strong> the latent space remains probabilistic even if the
+            reconstruction path is simplified</li>
+        </ul>
+        <h2 id="vae-algorithm">VAE algorithm<a class="headerlink" href="#vae-algorithm"
+            title="Permanent link">&para;</a></h2>
+        <p>At a high level, VAE training looks like this:</p>
+        <pre><code class="language-text">Data:
+  D: Dataset
+  q_phi(z|x): Inference model
+  p_theta(x, z): Generative model
+
+Result:
+  theta, phi: Learned parameters
+
+Algorithm:
+  Initialize theta, phi
+  while SGD not converged do
+      Sample a minibatch M from D
+      Sample epsilon for each datapoint in M
+      Compute the loss and its gradients
+      Update theta and phi
+  end
+</code></pre>
+        <p><em>Source: D. P. Kingma and M. Welling, “An Introduction to Variational Autoencoders,” 2019.</em></p>
+        <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+        <p>Variational autoencoders represent more than just another neural network architecture. They mark a shift in
+          how machines can learn to create rather than merely classify. By compressing data into structured latent
+          spaces and learning how to generate new samples from those spaces, VAEs laid mathematical groundwork for the
+          broader generative AI wave we see now.</p>
+        <p>Modern systems such as ChatGPT, DALL-E, and Stable Diffusion no longer rely on VAEs in the same simple form,
+          but they still inherit some of the core ideas that VAEs helped formalize: latent representations,
+          probabilistic generation, and variational inference as a practical engineering tool.</p>
+        <h2 id="key-takeaways">Key takeaways<a class="headerlink" href="#key-takeaways"
+            title="Permanent link">&para;</a></h2>
+        <ul>
+          <li><strong>VAEs helped solve the shift from recognition to generation</strong></li>
+          <li><strong>The ELBO objective and reparameterization trick remain foundational concepts</strong></li>
+          <li><strong>Probabilistic latent spaces are central to generative modeling</strong></li>
+          <li><strong>The mathematical ideas behind VAEs still influence current GenAI research</strong></li>
+        </ul>
+        <h2 id="the-road-ahead">The road ahead<a class="headerlink" href="#the-road-ahead"
+            title="Permanent link">&para;</a></h2>
+        <p>Understanding VAEs is not just historical background. It is a way of understanding the mathematical DNA of
+          generative AI. Whether you are building creative systems, studying deep learning more formally, or just trying
+          to understand how machines generate new content, VAEs remain one of the clearest places to start.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="col-md-12">
+    <footer class="blog-footer-shell">
+      <div class="blog-footer-inner">
+        <span>© 2025 – 2026 Sagnik Das</span>
+        <span>
+          <a href="/">Home</a> ·
+          <a href="/blog/">Blog</a> ·
+          <a href="/personal">Personal Corner</a> ·
+          <a href="/meet">Book a Meeting</a>
+        </span>
+      </div>
+    </footer>
+
+  </footer>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+    var base_url = "..",
+      shortcuts = { "help": 191, "next": 78, "previous": 80, "search": 83 };
+  </script>
+  <script src="../js/base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="../search/main.js"></script>
+
+  <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="searchModalLabel">Search</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>From here you can search these documents. Enter your search terms below.</p>
+          <form>
+            <div class="form-group">
+              <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query"
+                title="Type search term here">
+            </div>
+          </form>
+          <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Keys</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="help shortcut"><kbd>?</kbd></td>
+                <td>Open this help</td>
+              </tr>
+              <tr>
+                <td class="next shortcut"><kbd>n</kbd></td>
+                <td>Next page</td>
+              </tr>
+              <tr>
+                <td class="prev shortcut"><kbd>p</kbd></td>
+                <td>Previous page</td>
+              </tr>
+              <tr>
+                <td class="search shortcut"><kbd>s</kbd></td>
+                <td>Search</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

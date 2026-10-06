@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+  <meta name="description"
+    content="Exploring machine learning, LLM, and computer vision—practical insights from research and real-world AI systems. Curated by Sagnik Das.">
+  <meta name="author" content="Sagnik Das">
+
+  <link rel="canonical" href="https://sagnikdas.com/blog/">
+
+  <link rel="icon" href="/public/favicon.png" type="image/png">
+
+  <title>Blog | Simply ML</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/brands.min.css" rel="stylesheet">
+  <link href="css/solid.min.css" rel="stylesheet">
+  <link href="css/v4-font-face.min.css" rel="stylesheet">
+  <link href="css/base.css" rel="stylesheet">
+  <link id="hljs-light" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="hljs-dark" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+  <link href="stylesheets/blog.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+
+
+
+
+  <meta name="robots" content="index, follow">
+
+
+  <meta property="og:url" content="https://sagnikdas.com/blog/">
+
+  <meta property="og:site_name" content="Simply ML">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog | Simply ML">
+  <meta property="og:description"
+    content="Exploring machine learning, LLM, and computer vision—practical insights from research and real-world AI systems. Curated by Sagnik Das.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog | Simply ML">
+  <meta name="twitter:description"
+    content="Exploring machine learning, LLM, and computer vision—practical insights from research and real-world AI systems. Curated by Sagnik Das.">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+  <script type="application/ld+json">
+
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "@id": "https://sagnikdas.com/blog/#blog",
+      "url": "https://sagnikdas.com/blog/",
+      "name": "Simply ML",
+      "description": "Exploring machine learning, LLM, and computer vision—practical insights from research and real-world AI systems. Curated by Sagnik Das.",
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/",
+        "image": "https://avatars.githubusercontent.com/u/73765575?v=4"
+      },
+      "inLanguage": "en"
+    }
+    
+  </script>
+
+</head>
+
+<body class="homepage">
+  <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href=".">Simply ML</a>
+
+      <!-- Expanded navigation -->
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav blog-nav-list">
+          <li class="nav-item">
+            <a href="." class="nav-link active">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/personal" class="nav-link">Personal</a>
+          </li>
+          <li class="nav-item">
+            <a href="/meet" class="nav-link">Meet</a>
+          </li>
+        </ul>
+
+
+        <ul class="nav navbar-nav ms-md-auto">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse"
+              data-bs-target="#toc-collapse" title="Table of Contents">
+              <span class="fa fa-angle-down"></span>
+            </button>
+          </div>
+
+
+          <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+            <ul class="nav flex-column">
+
+              <li class="nav-item" data-bs-level="1"><a href="#simply-ml" class="nav-link">Simply ML</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item" data-bs-level="2"><a href="#machine-learning-made-clear" class="nav-link">Machine
+                      Learning Made Clear</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <h1 id="simply-ml">Simply ML<a class="headerlink" href="#simply-ml" title="Permanent link">&para;</a></h1>
+        <h2 id="machine-learning-made-clear">Machine Learning Made Clear<a class="headerlink"
+            href="#machine-learning-made-clear" title="Permanent link">&para;</a></h2>
+        <p>Exploring machine learning, LLM, and computer vision—practical insights from research and real-world AI
+          systems. Curated by Sagnik Das.</p>
+        <div class="blog-actions">
+          <a class="blog-action-button" href="/">Back to portfolio</a>
+          <a class="blog-action-button blog-action-button--secondary" href="/personal">Visit personal archive</a>
+        </div>
+
+        <div class="blog-card-grid">
+
+          <article class="blog-card">
+            <div class="blog-card-meta">
+              <span class="blog-card-category">Model Notes</span>
+              <span>Jan 22, 2026</span>
+              <span>7 min read</span>
+            </div>
+            <h2><a href="inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai/">Inside GPT-OSS: Open-Weight
+                Reasoning Models Built for Agentic AI</a></h2>
+            <p>A practical overview of GPT-OSS, its architecture, tool use, reasoning setup, and what open-weight
+              deployment changes for developers.</p>
+            <div class="blog-tag-row">
+              <span class="blog-tag">GPT-OSS</span><span class="blog-tag">open-weight models</span><span
+                class="blog-tag">reasoning models</span><span class="blog-tag">LLMs</span><span
+                class="blog-tag">OpenAI</span>
+            </div>
+            <a class="blog-card-link" href="inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai/">Read
+              post</a>
+          </article>
+
+          <article class="blog-card">
+            <div class="blog-card-meta">
+              <span class="blog-card-category">Foundations</span>
+              <span>Jul 31, 2025</span>
+              <span>7 min read</span>
+            </div>
+            <h2><a href="variational-autoencoders-secret-sauce-genai/">Why Variational Autoencoders Are the Secret Sauce
+                of the GenAI Revolution</a></h2>
+            <p>An introduction to variational autoencoders and why they matter for understanding the foundations of
+              generative AI.</p>
+            <div class="blog-tag-row">
+              <span class="blog-tag">GenAI</span><span class="blog-tag">VAE</span><span class="blog-tag">variational
+                autoencoders</span><span class="blog-tag">deep learning</span><span class="blog-tag">machine
+                learning</span>
+            </div>
+            <a class="blog-card-link" href="variational-autoencoders-secret-sauce-genai/">Read post</a>
+          </article>
+
+          <article class="blog-card">
+            <div class="blog-card-meta">
+              <span class="blog-card-category">AI &amp; Society</span>
+              <span>Jul 17, 2025</span>
+              <span>4 min read</span>
+            </div>
+            <h2><a href="your-92-accurate-ai-model-might-be-dangerous-heres-why/">Your 92% Accurate AI Model Might Be
+                Dangerous (Here&#39;s Why)</a></h2>
+            <p>High accuracy is not enough in medical AI. Trust, interpretability, and epistemic transparency have to be
+              part of the system design.</p>
+            <div class="blog-tag-row">
+              <span class="blog-tag">explainable AI</span><span class="blog-tag">medical AI</span><span
+                class="blog-tag">interpretability</span><span class="blog-tag">AI ethics</span><span
+                class="blog-tag">healthcare</span>
+            </div>
+            <a class="blog-card-link" href="your-92-accurate-ai-model-might-be-dangerous-heres-why/">Read post</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="col-md-12">
+    <footer class="blog-footer-shell">
+      <div class="blog-footer-inner">
+        <span>© 2025 – 2026 Sagnik Das</span>
+        <span>
+          <a href="/">Home</a> ·
+          <a href="/blog/">Blog</a> ·
+          <a href="/personal">Personal Corner</a> ·
+          <a href="/meet">Book a Meeting</a>
+        </span>
+      </div>
+    </footer>
+
+  </footer>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    var base_url = ".",
+      shortcuts = { "help": 191, "next": 78, "previous": 80, "search": 83 };
+  </script>
+  <script src="js/base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="search/main.js"></script>
+
+  <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="searchModalLabel">Search</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>From here you can search these documents. Enter your search terms below.</p>
+          <form>
+            <div class="form-group">
+              <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query"
+                title="Type search term here">
+            </div>
+          </form>
+          <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Keys</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="help shortcut"><kbd>?</kbd></td>
+                <td>Open this help</td>
+              </tr>
+              <tr>
+                <td class="next shortcut"><kbd>n</kbd></td>
+                <td>Next page</td>
+              </tr>
+              <tr>
+                <td class="prev shortcut"><kbd>p</kbd></td>
+                <td>Previous page</td>
+              </tr>
+              <tr>
+                <td class="search shortcut"><kbd>s</kbd></td>
+                <td>Search</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-06-27 17:59:16.972969+00:00
+-->

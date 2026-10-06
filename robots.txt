@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sagnikdas.com/sitemap.xml
+Host: https://sagnikdas.com

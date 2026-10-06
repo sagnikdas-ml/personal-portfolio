@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block htmltitle %}
+  <title>{% if page and page.title %}{{ page.title }} | {{ config.site_name }}{% else %}{{ config.site_name }}{% endif %}</title>
+{% endblock %}
+
+{% block site_meta %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% set meta_description = config.site_description %}
+  {% if page and page.meta and page.meta.description %}
+    {% set meta_description = page.meta.description %}
+  {% endif %}
+  <meta name="description" content="{{ meta_description|e }}">
+  <meta name="author" content="{{ config.site_author|e }}">
+  {% if page and page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url|e }}">
+  {% endif %}
+  <link rel="icon" href="/public/favicon.png" type="image/png">
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  {% set meta_description = config.site_description %}
+  {% if page and page.meta and page.meta.description %}
+    {% set meta_description = page.meta.description %}
+  {% endif %}
+  <meta name="robots" content="index, follow">
+  {% if page and page.meta and page.meta.tags %}
+    <meta name="keywords" content="{{ page.meta.tags|join(', ')|e }}">
+  {% endif %}
+  {% if page and page.canonical_url %}
+    <meta property="og:url" content="{{ page.canonical_url|e }}">
+  {% endif %}
+  <meta property="og:site_name" content="{{ config.site_name|e }}">
+  <meta property="og:type" content="{% if page and page.is_homepage %}website{% else %}article{% endif %}">
+  <meta property="og:title" content="{% if page and page.title %}{{ (page.title ~ ' | ' ~ config.site_name)|e }}{% else %}{{ config.site_name|e }}{% endif %}">
+  <meta property="og:description" content="{{ meta_description|e }}">
+  <meta property="og:image" content="{{ config.extra.og_image|e }}">
+  {% if page and not page.is_homepage and page.meta and page.meta.date %}
+    <meta property="article:published_time" content="{{ page.meta.date|e }}">
+    <meta property="article:modified_time" content="{{ page.meta.date|e }}">
+  {% endif %}
+  {% if page and not page.is_homepage and page.meta and page.meta.tags %}
+    {% for tag in page.meta.tags %}
+      <meta property="article:tag" content="{{ tag|e }}">
+    {% endfor %}
+  {% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if page and page.title %}{{ (page.title ~ ' | ' ~ config.site_name)|e }}{% else %}{{ config.site_name|e }}{% endif %}">
+  <meta name="twitter:description" content="{{ meta_description|e }}">
+  <meta name="twitter:image" content="{{ config.extra.og_image|e }}">
+  <script type="application/ld+json">
+    {% if page and page.is_homepage %}
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "@id": "https://sagnikdas.com/blog/#blog",
+      "url": "https://sagnikdas.com/blog/",
+      "name": "{{ config.site_name|e }}",
+      "description": "{{ meta_description|e }}",
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/",
+        "image": "{{ config.extra.og_image|e }}"
+      },
+      "inLanguage": "en"
+    }
+    {% elif page and page.canonical_url %}
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": "{{ page.canonical_url|e }}#post",
+      "mainEntityOfPage": "{{ page.canonical_url|e }}",
+      "headline": "{{ page.title|e }}",
+      "description": "{{ meta_description|e }}",
+      "url": "{{ page.canonical_url|e }}",
+      {% if page.meta and page.meta.date %}
+      "datePublished": "{{ page.meta.date|e }}",
+      "dateModified": "{{ page.meta.date|e }}",
+      {% endif %}
+      {% if page.meta and page.meta.category %}
+      "articleSection": "{{ page.meta.category|e }}",
+      {% endif %}
+      {% if page.meta and page.meta.tags %}
+      "keywords": "{{ page.meta.tags|join(', ')|e }}",
+      {% endif %}
+      "author": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/",
+        "image": "{{ config.extra.og_image|e }}"
+      },
+      "image": "{{ config.extra.og_image|e }}",
+      "inLanguage": "en"
+    }
+    {% endif %}
+  </script>
+{% endblock %}
+
+{% block site_nav %}
+  <ul class="nav navbar-nav blog-nav-list">
+    <li class="nav-item">
+      <a href="{{ nav.homepage.url|url }}" class="nav-link {% if page and page.is_homepage %}active{% endif %}">Blog</a>
+    </li>
+    <li class="nav-item">
+      <a href="/" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+      <a href="/personal" class="nav-link">Personal</a>
+    </li>
+    <li class="nav-item">
+      <a href="/meet" class="nav-link">Meet</a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block search_button %}{% endblock %}
+{% block next_prev %}{% endblock %}
+{% block repo %}{% endblock %}
+
+{% block footer %}
+  <footer class="blog-footer-shell">
+    <div class="blog-footer-inner">
+      <span>© 2025 – 2026 Sagnik Das</span>
+      <span>
+        <a href="/">Home</a> ·
+        <a href="/blog/">Blog</a> ·
+        <a href="/personal">Personal Corner</a> ·
+        <a href="/meet">Book a Meeting</a>
+      </span>
+    </div>
+  </footer>
+{% endblock %}

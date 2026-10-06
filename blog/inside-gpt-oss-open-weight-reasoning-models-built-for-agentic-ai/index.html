@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+  <meta name="description"
+    content="A practical overview of GPT-OSS, its architecture, tool use, reasoning setup, and what open-weight deployment changes for developers.">
+  <meta name="author" content="Sagnik Das">
+
+  <link rel="canonical"
+    href="https://sagnikdas.com/blog/inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai/">
+
+  <link rel="icon" href="/public/favicon.png" type="image/png">
+
+  <title>Inside GPT-OSS: Open-Weight Reasoning Models Built for Agentic AI | Simply ML</title>
+
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/fontawesome.min.css" rel="stylesheet">
+  <link href="../css/brands.min.css" rel="stylesheet">
+  <link href="../css/solid.min.css" rel="stylesheet">
+  <link href="../css/v4-font-face.min.css" rel="stylesheet">
+  <link href="../css/base.css" rel="stylesheet">
+  <link id="hljs-light" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="hljs-dark" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+  <link href="../stylesheets/blog.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+
+
+
+
+  <meta name="robots" content="index, follow">
+
+  <meta name="keywords" content="GPT-OSS, open-weight models, reasoning models, LLMs, OpenAI">
+
+
+  <meta property="og:url"
+    content="https://sagnikdas.com/blog/inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai/">
+
+  <meta property="og:site_name" content="Simply ML">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Inside GPT-OSS: Open-Weight Reasoning Models Built for Agentic AI | Simply ML">
+  <meta property="og:description"
+    content="A practical overview of GPT-OSS, its architecture, tool use, reasoning setup, and what open-weight deployment changes for developers.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+
+  <meta property="article:published_time" content="2026-01-22">
+  <meta property="article:modified_time" content="2026-01-22">
+
+
+
+  <meta property="article:tag" content="GPT-OSS">
+
+  <meta property="article:tag" content="open-weight models">
+
+  <meta property="article:tag" content="reasoning models">
+
+  <meta property="article:tag" content="LLMs">
+
+  <meta property="article:tag" content="OpenAI">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Inside GPT-OSS: Open-Weight Reasoning Models Built for Agentic AI | Simply ML">
+  <meta name="twitter:description"
+    content="A practical overview of GPT-OSS, its architecture, tool use, reasoning setup, and what open-weight deployment changes for developers.">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/73765575?v=4">
+  <script type="application/ld+json">
+
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": "https://sagnikdas.com/blog/inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai/#post",
+      "mainEntityOfPage": "https://sagnikdas.com/blog/inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai/",
+      "headline": "Inside GPT-OSS: Open-Weight Reasoning Models Built for Agentic AI",
+      "description": "A practical overview of GPT-OSS, its architecture, tool use, reasoning setup, and what open-weight deployment changes for developers.",
+      "url": "https://sagnikdas.com/blog/inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai/",
+      
+      "datePublished": "2026-01-22",
+      "dateModified": "2026-01-22",
+      
+      
+      "articleSection": "Model Notes",
+      
+      
+      "keywords": "GPT-OSS, open-weight models, reasoning models, LLMs, OpenAI",
+      
+      "author": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://sagnikdas.com/#person",
+        "name": "Sagnik Das",
+        "url": "https://sagnikdas.com/",
+        "image": "https://avatars.githubusercontent.com/u/73765575?v=4"
+      },
+      "image": "https://avatars.githubusercontent.com/u/73765575?v=4",
+      "inLanguage": "en"
+    }
+    
+  </script>
+
+</head>
+
+<body>
+  <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="..">Simply ML</a>
+
+      <!-- Expanded navigation -->
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav blog-nav-list">
+          <li class="nav-item">
+            <a href=".." class="nav-link ">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/personal" class="nav-link">Personal</a>
+          </li>
+          <li class="nav-item">
+            <a href="/meet" class="nav-link">Meet</a>
+          </li>
+        </ul>
+
+
+        <ul class="nav navbar-nav ms-md-auto">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse"
+              data-bs-target="#toc-collapse" title="Table of Contents">
+              <span class="fa fa-angle-down"></span>
+            </button>
+          </div>
+
+
+          <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+            <ul class="nav flex-column">
+
+              <li class="nav-item" data-bs-level="1"><a
+                  href="#inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai" class="nav-link">Inside
+                  GPT-OSS: Open-Weight Reasoning Models Built for Agentic AI</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item" data-bs-level="2"><a href="#gpt-oss-is-much-more-flexible-than-chatgpt"
+                      class="nav-link">GPT-OSS is much more flexible than ChatGPT</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#architecture-overview" class="nav-link">Architecture
+                      overview</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#quantization-and-hardware-efficiency"
+                      class="nav-link">Quantization and hardware efficiency</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#tokenizer" class="nav-link">Tokenizer</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#pretraining" class="nav-link">Pretraining</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#post-training-and-reasoning"
+                      class="nav-link">Post-training and reasoning</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#evaluation-results" class="nav-link">Evaluation
+                      results</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#safety-and-limitations" class="nav-link">Safety and
+                      limitations</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#conclusion" class="nav-link">Conclusion</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                  <li class="nav-item" data-bs-level="2"><a href="#references" class="nav-link">References</a>
+                    <ul class="nav flex-column">
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <p><a class="blog-back-link" href="../">← Back to blog</a></p>
+        <div class="blog-post-meta">
+          <span class="blog-post-category">Model Notes</span>
+          <span>Jan 22, 2026</span>
+          <span>7 min read</span>
+        </div>
+
+        <h1 id="inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai">Inside GPT-OSS: Open-Weight Reasoning
+          Models Built for Agentic AI<a class="headerlink"
+            href="#inside-gpt-oss-open-weight-reasoning-models-built-for-agentic-ai" title="Permanent link">&para;</a>
+        </h1>
+        <div class="blog-tag-row"><span class="blog-tag">GPT-OSS</span><span class="blog-tag">open-weight
+            models</span><span class="blog-tag">reasoning models</span><span class="blog-tag">LLMs</span><span
+            class="blog-tag">OpenAI</span></div>
+
+        <p>GPT-OSS refers to a pair of open-weight reasoning models, released under the Apache 2.0 license: <a
+            href="https://huggingface.co/openai/gpt-oss-20b">gpt-oss-20b</a> and <a
+            href="https://huggingface.co/openai/gpt-oss-120b">gpt-oss-120b</a>. Unlike proprietary ChatGPT, GPT-OSS is
+          designed to be run, modified, and fine-tuned by developers. The models are optimized for agentic workflows,
+          long-form reasoning, tool use, and structured outputs.</p>
+        <p>This article provides a practical overview of GPT-OSS, its architecture, training pipeline, reasoning
+          abilities, and how it fits in today’s model landscape.</p>
+        <h2 id="gpt-oss-is-much-more-flexible-than-chatgpt">GPT-OSS is much more flexible than ChatGPT<a
+            class="headerlink" href="#gpt-oss-is-much-more-flexible-than-chatgpt" title="Permanent link">&para;</a></h2>
+        <ul>
+          <li>Open-weight and flexible, allowing for tweaking and experimentation</li>
+          <li>Designed for agentic workflows such as Python execution and web search</li>
+          <li>Capable of long chain-of-thought reasoning</li>
+          <li>Customizable by developers</li>
+        </ul>
+        <p>OpenAI operates ChatGPT as one of the most widely used public conversational AI systems, so the company
+          releasing an open-weight model naturally attracted a lot of attention in both academia and industry. However,
+          GPT-OSS has a very different safety profile from ChatGPT and the OpenAI API. That difference is not due to
+          weaker training, but because open-weight models cannot rely on centralized, system-level safeguards once they
+          are released.</p>
+        <p>GPT-OSS-20B is meant to be used on regular consumer hardware with a minimum of 16 GB of memory, whereas
+          GPT-OSS-120B is meant to be used on servers. While ChatGPT works out of the box, GPT-OSS requires some basic
+          coding to get it running. In practice, a small Python script is enough to get started. For quick
+          experimentation, Hugging Face also provides an inference option on the model landing pages, although that
+          remains a hosted convenience rather than the core point of the release.</p>
+        <h2 id="architecture-overview">Architecture overview<a class="headerlink" href="#architecture-overview"
+            title="Permanent link">&para;</a></h2>
+        <p>GPT-OSS models are autoregressive <strong>Mixture-of-Experts (MoE)</strong> transformers built on
+          architectural ideas from GPT-2 and GPT-3.</p>
+        <h3 id="model-sizes">Model sizes<a class="headerlink" href="#model-sizes" title="Permanent link">&para;</a></h3>
+        <ul>
+          <li><strong>GPT-OSS-120B:</strong> 116.8B total parameters, 36 layers, 5.1B active parameters per token</li>
+          <li><strong>GPT-OSS-20B:</strong> 20.9B total parameters, 24 layers, 3.6B active parameters per token</li>
+        </ul>
+        <p>Only a subset of experts is active per token, which keeps inference more efficient than the total parameter
+          count might suggest.</p>
+        <h2 id="quantization-and-hardware-efficiency">Quantization and hardware efficiency<a class="headerlink"
+            href="#quantization-and-hardware-efficiency" title="Permanent link">&para;</a></h2>
+        <p>GPT-OSS applies post-training quantization to MoE weights using the <strong>MXFP4</strong> format, roughly
+          4.25 bits per parameter. This reduces memory requirements enough that local inference becomes realistic for
+          smaller teams and individual developers.</p>
+        <p>That enables:</p>
+        <ul>
+          <li>GPT-OSS-120B to run on an 80 GB GPU</li>
+          <li>GPT-OSS-20B to run with only 16 GB of memory</li>
+        </ul>
+        <p>That matters for privacy-sensitive or low-infrastructure use cases. Tasks involving payslips, banking
+          documents, or medical information can be processed locally without sending data to a remote API. Without
+          quantization, most individual researchers, small companies, and regular users would not be able to work with
+          models of this quality on their own systems.</p>
+        <h2 id="tokenizer">Tokenizer<a class="headerlink" href="#tokenizer" title="Permanent link">&para;</a></h2>
+        <p>TikToken is a tokenizer library maintained by OpenAI. GPT-OSS uses the <strong>o200k_harmony</strong>
+          tokenizer, which is a Byte Pair Encoding tokenizer extended with special tokens for role-based and
+          channel-based chat formatting.</p>
+        <h2 id="pretraining">Pretraining<a class="headerlink" href="#pretraining" title="Permanent link">&para;</a></h2>
+        <h3 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
+        <p>GPT-OSS models are trained on a text-only dataset containing trillions of tokens with emphasis on:</p>
+        <ul>
+          <li>STEM and mathematics</li>
+          <li>Programming and code</li>
+          <li>General knowledge</li>
+        </ul>
+        <p>Harmful content, including biosecurity-related material, was filtered using CBRN pretraining filters
+          originally developed for GPT-4o.</p>
+        <h3 id="training-infrastructure">Training infrastructure<a class="headerlink" href="#training-infrastructure"
+            title="Permanent link">&para;</a></h3>
+        <p>Training was conducted on NVIDIA H100 GPUs using PyTorch with expert-optimized Triton kernels and
+          FlashAttention.</p>
+        <ul>
+          <li><strong>GPT-OSS-120B:</strong> approximately 2.1M H100 GPU-hours</li>
+          <li><strong>GPT-OSS-20B:</strong> approximately 10x fewer GPU-hours</li>
+        </ul>
+        <h2 id="post-training-and-reasoning">Post-training and reasoning<a class="headerlink"
+            href="#post-training-and-reasoning" title="Permanent link">&para;</a></h2>
+        <p>After pretraining, the models were post-trained using chain-of-thought reinforcement learning, similar in
+          spirit to how OpenAI’s reasoning-focused models were trained.</p>
+        <p>They are taught:</p>
+        <ul>
+          <li>How to reason step by step</li>
+          <li>How to solve complex math and coding problems</li>
+          <li>How to use tools such as Python execution and web browsing</li>
+        </ul>
+        <h3 id="harmony-chat-format">Harmony chat format<a class="headerlink" href="#harmony-chat-format"
+            title="Permanent link">&para;</a></h3>
+        <p>GPT-OSS uses the Harmony chat format, a role-based messaging structure with explicit message boundaries such
+          as System, Developer, User, and Assistant.</p>
+        <p>The format also introduces explicit channels:</p>
+        <ul>
+          <li><strong>analysis:</strong> internal chain-of-thought</li>
+          <li><strong>commentary:</strong> tool calls</li>
+          <li><strong>final:</strong> user-visible output</li>
+        </ul>
+        <p>This structure enables more advanced agentic behavior, but it also requires careful handling, especially in
+          multi-turn conversations and tool-heavy applications.</p>
+        <h3 id="variable-reasoning-effort">Variable reasoning effort<a class="headerlink"
+            href="#variable-reasoning-effort" title="Permanent link">&para;</a></h3>
+        <p>In ChatGPT, users are familiar with settings like Auto, Instant, Thinking, Pro, and Deep Research. GPT-OSS
+          exposes a similar idea through three effort levels:</p>
+        <ul>
+          <li><code>low</code></li>
+          <li><code>medium</code></li>
+          <li><code>high</code></li>
+        </ul>
+        <p>These are set via prompt-level instructions such as <code>Reasoning: high</code>. Higher effort generally
+          produces longer reasoning traces and better performance, at the cost of latency and compute.</p>
+        <h3 id="agentic-tool-use">Agentic tool use<a class="headerlink" href="#agentic-tool-use"
+            title="Permanent link">&para;</a></h3>
+        <p>GPT-OSS models are trained to interact with:</p>
+        <ul>
+          <li>Web browsing via search and page access tools</li>
+          <li>Python code execution in a stateful environment</li>
+          <li>Arbitrary developer-defined functions with schemas</li>
+        </ul>
+        <p>Tool use can be enabled or disabled through prompting and application design.</p>
+        <h2 id="evaluation-results">Evaluation results<a class="headerlink" href="#evaluation-results"
+            title="Permanent link">&para;</a></h2>
+        <h3 id="reasoning-and-coding">Reasoning and coding<a class="headerlink" href="#reasoning-and-coding"
+            title="Permanent link">&para;</a></h3>
+        <p>Among offline and locally runnable models, GPT-OSS is particularly strong on reasoning-heavy tasks,
+          mathematics, coding, and structured tool use. GPT-OSS-20B reportedly uses over 20k chain-of-thought tokens per
+          AIME problem on average. GPT-OSS-120B approaches the performance of OpenAI’s smaller frontier reasoning models
+          on some coding and tool benchmarks.</p>
+        <p><img alt="GPT-OSS reasoning and coding benchmark"
+            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1769036445897/d6189b25-4c5c-4655-92e0-d1d6664eb265.png" />
+        </p>
+        <h3 id="health-performance">Health performance<a class="headerlink" href="#health-performance"
+            title="Permanent link">&para;</a></h3>
+        <p>GPT-OSS also performs competitively on HealthBench evaluations.</p>
+        <p><img alt="GPT-OSS HealthBench comparison"
+            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1769035826187/175341f9-ffc8-4790-9ca4-2e7b7ba1b172.png" />
+        </p>
+        <p>GPT-OSS-120B approaches OpenAI o3 on some health-focused benchmarks and outperforms several closed models.
+          That said, advice from a language model is still not a substitute for medical professionals.</p>
+        <h3 id="multilingual-performance">Multilingual performance<a class="headerlink" href="#multilingual-performance"
+            title="Permanent link">&para;</a></h3>
+        <p>On MMMLU benchmarks across 14 languages, GPT-OSS-120B at high reasoning effort comes close to the performance
+          of stronger hosted reasoning models.</p>
+        <p><img alt="GPT-OSS multilingual benchmark"
+            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1769036019896/24ef00ce-5fad-4245-8f96-cf51a87f9bf7.png" />
+        </p>
+        <h2 id="safety-and-limitations">Safety and limitations<a class="headerlink" href="#safety-and-limitations"
+            title="Permanent link">&para;</a></h2>
+        <p>Even the best systems have limitations, and GPT-OSS is no exception. As an open-weight release, it does not
+          inherit the same deployment safeguards as a centrally hosted product.</p>
+        <h3 id="preparedness-framework">Preparedness framework<a class="headerlink" href="#preparedness-framework"
+            title="Permanent link">&para;</a></h3>
+        <p>GPT-OSS-120B does not reach OpenAI’s “High capability” thresholds under the Preparedness Framework, even
+          after adversarial fine-tuning.</p>
+        <ul>
+          <li>Biological and chemical capability</li>
+          <li>Cyber capability</li>
+          <li>AI self-improvement</li>
+        </ul>
+        <h3 id="disallowed-content-and-jailbreaks">Disallowed content and jailbreaks<a class="headerlink"
+            href="#disallowed-content-and-jailbreaks" title="Permanent link">&para;</a></h3>
+        <p>On standard disallowed-content evaluations, both models perform on par with OpenAI o4-mini in some
+          categories. GPT-OSS-20B underperforms on some illicit or violent categories but still exceeds older mainstream
+          models. Robustness to jailbreaks using StrongReject is reported to be comparable to o4-mini.</p>
+        <p><img alt="GPT-OSS safety benchmark"
+            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1769036374502/35b6ebd3-c7fe-4964-82fd-ca56b4d9f3a3.png" />
+        </p>
+        <h3 id="instruction-hierarchy">Instruction hierarchy<a class="headerlink" href="#instruction-hierarchy"
+            title="Permanent link">&para;</a></h3>
+        <p>All public chat models need to respect instruction hierarchy to function reliably as assistants. GPT-OSS
+          follows system and developer priorities, but it underperforms stronger hosted models on tests such as system
+          prompt extraction and prompt injection resistance.</p>
+        <p><img alt="GPT-OSS instruction hierarchy benchmark"
+            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1769036661898/20ceb3df-a6e5-4b42-90e2-688c4892ccfd.png" />
+        </p>
+        <h3 id="chain-of-thought-and-hallucinations">Chain-of-thought and hallucinations<a class="headerlink"
+            href="#chain-of-thought-and-hallucinations" title="Permanent link">&para;</a></h3>
+        <p>GPT-OSS chain-of-thought is intentionally less constrained. That means:</p>
+        <ul>
+          <li>Chain-of-thought may contain hallucinations</li>
+          <li>Chain-of-thought may include unsafe or unfiltered language</li>
+        </ul>
+        <p>Researchers have noted that when models are discouraged from expressing certain internal reasoning, they can
+          learn to conceal the reasoning while still behaving incorrectly. For that reason, developers are generally
+          advised not to expose raw chain-of-thought to end users.</p>
+        <h3 id="fairness-and-bias">Fairness and bias<a class="headerlink" href="#fairness-and-bias"
+            title="Permanent link">&para;</a></h3>
+        <p>On BBQ fairness benchmarks, GPT-OSS models reportedly perform at roughly the same level as OpenAI o4-mini.
+        </p>
+        <p><img alt="GPT-OSS fairness benchmark"
+            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1769037084369/f89d26fc-827b-4b39-94f4-33332b19be27.png" />
+        </p>
+        <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+        <p>GPT-OSS represents a meaningful step forward for open-weight reasoning models. It combines long
+          chain-of-thought reasoning, agentic tool use, and strong math and coding performance in a form developers can
+          actually inspect and control.</p>
+        <p>The technical freedom is real, but so is the shift in responsibility. Safety, deployment, and monitoring are
+          no longer handled by a centralized API. They become the job of the system builder. GPT-OSS is not a drop-in
+          replacement for ChatGPT, but for teams building agentic systems, it is a powerful foundation.</p>
+        <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+        <ol>
+          <li>OpenAI <em>et al.</em>, “gpt-oss-120b &amp; gpt-oss-20b Model Card,” Aug. 08, 2025, <em>arXiv</em>:
+            arXiv:2508.10925. doi: <a href="https://doi.org/10.48550/arXiv.2508.10925">10.48550/arXiv.2508.10925</a>.
+          </li>
+        </ol>
+        <details>
+          <summary>Disclaimer</summary>
+          <p>All images and tables are reproduced from the referenced model card. The cover image source is the public
+            GPT-OSS documentation and model materials. This article is an independent technical summary and
+            interpretation of the OpenAI GPT-OSS model card. The author is not affiliated with OpenAI, and any opinions
+            or interpretations are solely those of the author.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <footer class="col-md-12">
+    <footer class="blog-footer-shell">
+      <div class="blog-footer-inner">
+        <span>© 2025 – 2026 Sagnik Das</span>
+        <span>
+          <a href="/">Home</a> ·
+          <a href="/blog/">Blog</a> ·
+          <a href="/personal">Personal Corner</a> ·
+          <a href="/meet">Book a Meeting</a>
+        </span>
+      </div>
+    </footer>
+
+  </footer>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+    var base_url = "..",
+      shortcuts = { "help": 191, "next": 78, "previous": 80, "search": 83 };
+  </script>
+  <script src="../js/base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="../search/main.js"></script>
+
+  <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="searchModalLabel">Search</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>From here you can search these documents. Enter your search terms below.</p>
+          <form>
+            <div class="form-group">
+              <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query"
+                title="Type search term here">
+            </div>
+          </form>
+          <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Keys</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="help shortcut"><kbd>?</kbd></td>
+                <td>Open this help</td>
+              </tr>
+              <tr>
+                <td class="next shortcut"><kbd>n</kbd></td>
+                <td>Next page</td>
+              </tr>
+              <tr>
+                <td class="prev shortcut"><kbd>p</kbd></td>
+                <td>Previous page</td>
+              </tr>
+              <tr>
+                <td class="search shortcut"><kbd>s</kbd></td>
+                <td>Search</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
